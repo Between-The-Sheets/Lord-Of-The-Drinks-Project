@@ -3,14 +3,17 @@ Application to test your knowledge about cocktails mixing(Telerik JS UI &amp; DO
 
 ## The desired result
 
-* We decided to drag the bottles(rectangle with a picture over the top). 
-* A random cocktail will be given where one or more ingredients need to be dragged to the shaker.
-* Bottles/juices etc will be dragged to shaker. 
-* Sound of puring liquid.
+
+* Start page - click New Cocktail (backgroud picture)
+* A random cocktail will be given where one or more ingredients need to be dragged to the shaker or glass.
+* After click - main page opens - background layer to be added - shelves and shaker/glass.
+* Drag the bottles(rectangle with a picture over the top) or click and they move on a pre-calculated route.
+* Bottles/juices etc will be poured into shaker/glass.(animate liquid going in from bottle) 
+* Sound of pouring liquid.
 * When the button ready is pressed:
-* Animate the shaker to bounce around + sound.
-* Check the ingredients against our recipe.
-* Fireworks for correct ingredients or boos for wrong ones.
+  * Animate the shaker to bounce around + sound/ or if glass - liquid filling it to the top.
+  * Using constants for recipes and bottle ids collected check the ingredients against our recipe.
+  * Fireworks for correct ingredients or boos for wrong ones.
 
 ## Project requirements
 
