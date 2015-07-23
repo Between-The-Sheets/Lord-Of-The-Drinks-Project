@@ -2,8 +2,10 @@ function loadImages(sources, callback) {
     var images = {};
     var loadedImages = 0;
     var numImages = 0;
-    
-    numImages = Object.keys(sources).length;
+
+    for (var src in sources) {
+        numImages++;
+    }
 
     for (var src in sources) {
         images[src] = new Image();
@@ -15,6 +17,17 @@ function loadImages(sources, callback) {
 
         images[src].src = sources[src];
     }
+}
+function selectedDrinkIsUnique(drinksArray,drink) {
+    var i,
+        len = drinksArray.length;
+    for (i = 0; i < len; i += 1) {
+        if (drinksArray[i] === drink) {
+            return false;
+        }
+    }
+    return true;
+
 }
 
 function initStage(images) {
@@ -34,7 +47,7 @@ function initStage(images) {
     };
     var BOTTLES_OFF_SET_POSITION = 60,
         bottleID,
-        bottles = [];
+        bottles                  = [];
 
     for (bottleID = 0; bottleID < 3; bottleID += 1) { //alcohol bottles here
         var imageObj = new Image();
@@ -60,17 +73,23 @@ function initStage(images) {
         })
     })
 
+    var selectedDrinks = [];
     bottles.forEach(function (bottle) {
         bottle.addEventListener('dragend', function () {
-             var startX = bottle.startX,
-                 startY = bottle.startY;
+            var startX = bottle.startX,
+                startY = bottle.startY;
 
+          if((selectedDrinkIsUnique(selectedDrinks, bottle.id))){
+                selectedDrinks.push(bottle.id);
+            }
+            console.log(selectedDrinks);
             bottle.setX(startX);
             bottle.setY(startY);
 
             layer.draw();
         })
     })
+
 
     layer.on('mouseover', function (evt) {
         var shape = evt.shape;
