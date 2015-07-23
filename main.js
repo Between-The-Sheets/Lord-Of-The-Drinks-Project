@@ -2,10 +2,8 @@ function loadImages(sources, callback) {
     var images = {};
     var loadedImages = 0;
     var numImages = 0;
-
-    for (var src in sources) {
-        numImages++;
-    }
+    
+    numImages = Object.keys(sources).length;
 
     for (var src in sources) {
         images[src] = new Image();
