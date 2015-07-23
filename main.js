@@ -1,11 +1,17 @@
+var selectedDrinks = [];
+var ALCOHOL_CONSTANTS = ['vodka', 'gin', 'cointreau','tequila','white rum'];
+var RECIPES = {
+    cocktail: {
+        ingredients: ['gin', 'vodka']
+    }
+};
+
 function loadImages(sources, callback) {
     var images = {};
     var loadedImages = 0;
     var numImages = 0;
 
-    for (var src in sources) {
-        numImages++;
-    }
+    numImages = Object.keys(sources).length;
 
     for (var src in sources) {
         images[src] = new Image();
@@ -18,7 +24,7 @@ function loadImages(sources, callback) {
         images[src].src = sources[src];
     }
 }
-function selectedDrinkIsUnique(drinksArray,drink) {
+function selectedDrinkIsUnique(drinksArray, drink) {
     var i,
         len = drinksArray.length;
     for (i = 0; i < len; i += 1) {
@@ -27,7 +33,9 @@ function selectedDrinkIsUnique(drinksArray,drink) {
         }
     }
     return true;
-
+    //return drinksArray.some(function (item) {
+    //    return item !== drink;
+    //})
 }
 
 function initStage(images) {
@@ -38,13 +46,7 @@ function initStage(images) {
     });
 
     var layer = new Kinetic.Layer();
-    var ALCOHOL_CONSTANTS = {
-        0: 'vodka',
-        1: 'gin',
-        2: 'cointreau',
-        3: 'tequila',
-        4: 'white rum'
-    };
+
     var BOTTLES_OFF_SET_POSITION = 60,
         bottleID,
         bottles                  = [];
@@ -69,20 +71,20 @@ function initStage(images) {
     }
     bottles.forEach(function (bottle) {
         bottle.addEventListener('dragstart', function () {
-            console.log(bottle.id);  // add the clicked alcohol to compare with constants
+            //console.log(bottle.id);  // add the clicked alcohol to compare with constants
         })
     })
 
-    var selectedDrinks = [];
     bottles.forEach(function (bottle) {
         bottle.addEventListener('dragend', function () {
             var startX = bottle.startX,
                 startY = bottle.startY;
 
-          if((selectedDrinkIsUnique(selectedDrinks, bottle.id))){
+            if ((selectedDrinkIsUnique(selectedDrinks, bottle.id))) {
                 selectedDrinks.push(bottle.id);
             }
             console.log(selectedDrinks);
+            console.log(bottle.id);
             bottle.setX(startX);
             bottle.setY(startY);
 
@@ -110,4 +112,24 @@ var sources = {
     2: 'images/coin.png'
 };
 
+
 loadImages(sources, initStage);
+
+var myButton = document.getElementById('myButton');
+
+myButton.addEventListener('click', function (ev) {
+    selectedDrinks.sort(function (firstIngredient, secondIngredient) {
+        var sortedDrinks =  firstIngredient.localeCompare(secondIngredient);
+        return sortedDrinks;
+    });
+
+    var areEqual = true;
+
+    for(var i = 0, len = selectedDrinks.length; i < len; i += 1) {
+        if(selectedDrinks[i] !== RECIPES.cocktail.ingredients[i]) {
+            areEqual = false;
+        }
+    }
+
+    console.log(areEqual);
+})
