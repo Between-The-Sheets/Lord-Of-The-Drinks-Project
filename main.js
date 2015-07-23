@@ -2,44 +2,44 @@ var selectedDrinks = [];
 var ALCOHOL_CONSTANTS = ['vodka', 'gin', 'cointreau','tequila','white rum'];
 var RECIPES = {
     0: {
-        ingredients: ['gin', 'vodka'],
-        name: 'cocktail_name'
+        name: 'Long Island Iced Tea',
+        ingredients: ['gin', 'vodka', 'tequila', 'white rum']
     },
     1: {
-       ingredients: ['cointreau', 'vodka'],
-       name: 'cocktail_name'
+        name: 'Mojito',
+        ingredients: ['white run', 'mint', 'soda', 'lime']
     },
     2: {
-       ingredients: ['cointreau', 'vodka'],
-       name: 'cocktail_name'
+        name: 'Pina Colada',
+        ingredients: ['white rum', 'coconut liquor', 'pineapple juice']
     },
     3: {
-        ingredients: ['gin', 'vodka'],
-        name: 'cocktail_name'
+        name: 'Cosmopolitan',
+        ingredients: ['cointreau', 'vodka', 'lime']
     },
     4: {
-       ingredients: ['cointreau', 'vodka'],
-       name: 'cocktail_name'
+        name: 'Tequila Sunrise',
+        ingredients: ['tequila', 'orange juice', 'grenadine']
     },
     5: {
-        ingredients: ['gin', 'vodka'],
-        name: 'cocktail_name'
+        name: 'Daiquiri',
+        ingredients: ['white rum', 'lime']
     },
     6: {
-       ingredients: ['cointreau', 'vodka'],
-       name: 'cocktail_name'
+        name: 'Margarita',
+        ingredients: ['tequila', 'cointreau', 'lime']
     },
     7: {
-        ingredients: ['gin', 'vodka'],
-        name: 'cocktail_name'
+        name: 'Sex on the Beach',
+        ingredients: ['vodka', 'pineapple juice']
     },
     8: {
-       ingredients: ['cointreau', 'vodka'],
-       name: 'cocktail_name'
+        name: 'Cuba Libre',
+        ingredients: ['white rum', 'coca-cola']
     },
     9: {
-        ingredients: ['gin', 'vodka'],
-        name: 'cocktail_name'
+        name: 'Bloody Mery',
+        ingredients: ['vodka', 'tomato juice']
     }
 },
     index = Math.random() * 10 | 0,
