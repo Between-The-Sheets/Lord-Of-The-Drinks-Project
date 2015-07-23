@@ -88,10 +88,11 @@ function initStage(images) {
 
     var BOTTLES_OFF_SET_POSITION = 60,
         bottleID,
-        bottles                  = [];
+        bottles = [];
 
+
+//bottleID < 3! Слагам този коментар, за да не забравим да го сменим после, когато добавим повече бутилки!!
     for (bottleID = 0; bottleID < 3; bottleID += 1) { //alcohol bottles here
-        var imageObj = new Image();
         var bottle = new Kinetic.Image({
             x: 10 + bottleID * BOTTLES_OFF_SET_POSITION,
             y: 15,
@@ -108,6 +109,7 @@ function initStage(images) {
         layer.add(bottle);
         stage.add(layer);
     }
+    
     bottles.forEach(function (bottle) {
         bottle.addEventListener('dragstart', function () {
             //console.log(bottle.id);  // add the clicked alcohol to compare with constants
@@ -163,6 +165,10 @@ myButton.addEventListener('click', function (ev) {
     });
 
     var areEqual = true;
+
+    if (!selectedDrinks.length) {
+        areEqual = false;
+    }
 
     for(var i = 0, len = selectedDrinks.length; i < len; i += 1) {
         if(selectedDrinks[i] !== cocktail.ingredients[i]) {
