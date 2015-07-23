@@ -46,8 +46,10 @@ function initStage(images) {
             image: images[bottleID],
             width: 50,
             height: 100,
-            draggable: true,
+            draggable: true
         });
+        bottle.startX = bottle.attrs.x;
+        bottle.startY = bottle.attrs.y;
         bottle.id = ALCOHOL_CONSTANTS[bottleID];
         bottles.push(bottle);
 
@@ -57,6 +59,18 @@ function initStage(images) {
     bottles.forEach(function (bottle) {
         bottle.addEventListener('dragstart', function () {
             console.log(bottle.id);  // add the clicked alcohol to compare with constants
+        })
+    })
+
+    bottles.forEach(function (bottle) {
+        bottle.addEventListener('dragend', function () {
+             var startX = bottle.startX,
+                 startY = bottle.startY;
+
+            bottle.setX(startX);
+            bottle.setY(startY);
+
+            layer.draw();
         })
     })
 
