@@ -1,10 +1,49 @@
 var selectedDrinks = [];
 var ALCOHOL_CONSTANTS = ['vodka', 'gin', 'cointreau','tequila','white rum'];
 var RECIPES = {
-    cocktail: {
-        ingredients: ['gin', 'vodka']
+    0: {
+        ingredients: ['gin', 'vodka'],
+        name: 'cocktail_name'
+    },
+    1: {
+       ingredients: ['cointreau', 'vodka'],
+       name: 'cocktail_name'
+    },
+    2: {
+       ingredients: ['cointreau', 'vodka'],
+       name: 'cocktail_name'
+    },
+    3: {
+        ingredients: ['gin', 'vodka'],
+        name: 'cocktail_name'
+    },
+    4: {
+       ingredients: ['cointreau', 'vodka'],
+       name: 'cocktail_name'
+    },
+    5: {
+        ingredients: ['gin', 'vodka'],
+        name: 'cocktail_name'
+    },
+    6: {
+       ingredients: ['cointreau', 'vodka'],
+       name: 'cocktail_name'
+    },
+    7: {
+        ingredients: ['gin', 'vodka'],
+        name: 'cocktail_name'
+    },
+    8: {
+       ingredients: ['cointreau', 'vodka'],
+       name: 'cocktail_name'
+    },
+    9: {
+        ingredients: ['gin', 'vodka'],
+        name: 'cocktail_name'
     }
-};
+},
+    index = Math.random() * 10 | 0,
+    cocktail = RECIPES[index];
 
 function loadImages(sources, callback) {
     var images = {};
@@ -126,7 +165,7 @@ myButton.addEventListener('click', function (ev) {
     var areEqual = true;
 
     for(var i = 0, len = selectedDrinks.length; i < len; i += 1) {
-        if(selectedDrinks[i] !== RECIPES.cocktail.ingredients[i]) {
+        if(selectedDrinks[i] !== cocktail.ingredients[i]) {
             areEqual = false;
         }
     }
