@@ -113,7 +113,6 @@ function initStage(images, rowLength, secondRow) {
     }
 
     for (bottleID = 0; bottleID < rowLength; bottleID += 1) { //alcohol bottles here
-
         bottle = new Kinetic.Image({
             x: 10 + bottleID * BOTTLES_OFF_SET_POSITION,
             y: offsetY,
