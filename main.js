@@ -1,5 +1,5 @@
 var selectedDrinks = [];
-var ALCOHOL_CONSTANTS = ['vodka', 'gin', 'cointreau','tequila', 'white rum'];
+var ALCOHOL_CONSTANTS = ['vodka', 'gin', 'cointreau','tequila', 'white-rum', 'dark-rum'];
 var RECIPES = {
     0: {
         name: 'Long Island Iced Tea',
@@ -147,41 +147,43 @@ function initStage(images) {
     });
 }
 
-var sources = {
-    0: 'images/absolutVodka_250x500.jpg',
-    1: 'images/gordon_gin.png',
-    2: 'images/coin.png'
+var sources = {};
+
+for (var i = 0; i < ALCOHOL_CONSTANTS.length; i++) {
+    sources[i] = './images/' + ALCOHOL_CONSTANTS[i] + '.png';
 };
+
+console.log(sources);
 
 
 loadImages(sources, initStage);
 
-var myButton = document.getElementById('myButton');
+// var myButton = document.getElementById('myButton');
 
-myButton.addEventListener('click', function (ev) {
-    selectedDrinks.sort(function (firstIngredient, secondIngredient) {
-        var sortedDrinks =  firstIngredient.localeCompare(secondIngredient);
-        return sortedDrinks;
-    });
+// myButton.addEventListener('click', function (ev) {
+//     selectedDrinks.sort(function (firstIngredient, secondIngredient) {
+//         var sortedDrinks =  firstIngredient.localeCompare(secondIngredient);
+//         return sortedDrinks;
+//     });
 
-    var areEqual = true;
+//     var areEqual = true;
 
-    if (!selectedDrinks.length) {
-        areEqual = false;
-    }
+//     if (!selectedDrinks.length) {
+//         areEqual = false;
+//     }
 
-    for(var i = 0, len = selectedDrinks.length; i < len; i += 1) {
-        if(selectedDrinks[i] !== cocktail.ingredients[i]) {
-            areEqual = false;
-        }
-    }
+//     for(var i = 0, len = selectedDrinks.length; i < len; i += 1) {
+//         if(selectedDrinks[i] !== cocktail.ingredients[i]) {
+//             areEqual = false;
+//         }
+//     }
 
-    if (areEqual) {
-        endScreen();
-    }
+//     if (areEqual) {
+//         endScreen();
+//     }
 
-    console.log(areEqual);
-})
+//     console.log(areEqual);
+// });
 
 //END SCREEN
 //Fireworks in case you win the game
