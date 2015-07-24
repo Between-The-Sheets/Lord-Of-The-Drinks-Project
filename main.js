@@ -183,6 +183,8 @@ myButton.addEventListener('click', function (ev) {
     console.log(areEqual);
 })
 
+//END SCREEN
+//Fireworks in case you win the game
 function endScreen() {
     var SCREEN_WIDTH = window.innerWidth,
     SCREEN_HEIGHT = window.innerHeight,
