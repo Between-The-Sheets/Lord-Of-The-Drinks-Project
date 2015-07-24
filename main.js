@@ -1,58 +1,60 @@
-var selectedDrinks = [];
-var ALCOHOL_CONSTANTS = ['vodka', 'gin', 'cointreau','tequila', 'white-rum', 'dark-rum'];
-var RECIPES = {
-    0: {
-        name: 'Long Island Iced Tea',
-        ingredients: ['gin', 'tequila', 'vodka', 'white rum']
+var selectedDrinks = [],
+    ALCOHOL_CONSTANTS = ['vodka', 'gin', 'cointreau','tequila', 'white-rum', 'dark-rum'],
+    RECIPES = {
+        0: {
+            name: 'Long Island Iced Tea',
+            ingredients: ['gin', 'tequila', 'vodka', 'white rum']
+        },
+        1: {
+            name: 'Mojito',
+            ingredients: ['lime', 'mint', 'soda', 'white run']
+        },
+        2: {
+            name: 'Pina Colada',
+            ingredients: ['coconut liquor', 'pineapple juice', 'white rum']
+        },
+        3: {
+            name: 'Cosmopolitan',
+            ingredients: ['cointreau', 'lime', 'vodka']
+        },
+        4: {
+            name: 'Tequila Sunrise',
+            ingredients: ['grenadine', 'orange juice', 'tequila']
+        },
+        5: {
+            name: 'Daiquiri',
+            ingredients: ['lime', 'white rum']
+        },
+        6: {
+            name: 'Margarita',
+            ingredients: ['cointreau', 'lime', 'tequila']
+        },
+        7: {
+            name: 'Sex on the Beach',
+            ingredients: ['pineapple juice', 'vodka']
+        },
+        8: {
+            name: 'Cuba Libre',
+            ingredients: ['coca-cola', 'white rum']
+        },
+        9: {
+            name: 'Bloody Mery',
+            ingredients: ['tomato juice', 'vodka']
+        }
     },
-    1: {
-        name: 'Mojito',
-        ingredients: ['lime', 'mint', 'soda', 'white run']
-    },
-    2: {
-        name: 'Pina Colada',
-        ingredients: ['coconut liquor', 'pineapple juice', 'white rum']
-    },
-    3: {
-        name: 'Cosmopolitan',
-        ingredients: ['cointreau', 'lime', 'vodka']
-    },
-    4: {
-        name: 'Tequila Sunrise',
-        ingredients: ['grenadine', 'orange juice', 'tequila']
-    },
-    5: {
-        name: 'Daiquiri',
-        ingredients: ['lime', 'white rum']
-    },
-    6: {
-        name: 'Margarita',
-        ingredients: ['cointreau', 'lime', 'tequila']
-    },
-    7: {
-        name: 'Sex on the Beach',
-        ingredients: ['pineapple juice', 'vodka']
-    },
-    8: {
-        name: 'Cuba Libre',
-        ingredients: ['coca-cola', 'white rum']
-    },
-    9: {
-        name: 'Bloody Mery',
-        ingredients: ['tomato juice', 'vodka']
-    }
-},
     index = Math.random() * 10 | 0,
     cocktail = RECIPES[index];
 
+//Images must be in dom to set it in kinetic object
 function loadImages(sources, callback) {
-    var images = {};
-    var loadedImages = 0;
-    var numImages = 0;
+    var images = {},
+    loadedImages = 0,
+    numImages = 0,
+    src;
 
     numImages = Object.keys(sources).length;
 
-    for (var src in sources) {
+    for (src in sources) {
         images[src] = new Image();
         images[src].onload = function () {
             if (++loadedImages >= numImages) {
@@ -63,6 +65,7 @@ function loadImages(sources, callback) {
         images[src].src = sources[src];
     }
 }
+
 function selectedDrinkIsUnique(drinksArray, drink) {
     var i,
         len = drinksArray.length;
@@ -78,27 +81,34 @@ function selectedDrinkIsUnique(drinksArray, drink) {
 }
 
 function initStage(images) {
-    var stage = new Kinetic.Stage({
-        container: 'container',
-        width: 1500,
-        height: 800
-    });
-
-    var layer = new Kinetic.Layer();
-
-    var BOTTLES_OFF_SET_POSITION = 60,
+    var stage,
+        len = 0,
+        layer,
+        BOTTLES_OFF_SET_POSITION = 100,
         bottleID,
-        bottles = [];
+        bottles = [],
+        bottle,
+        CONSTANTS = {
+            STAGE_WIDTH: 1500,
+            STAGE_HEIGHT: 800,
+            BOTTLE_IMAGE_HEIGHT: 150,
+            BOTTLE_IMAGE_WIDTH: 150
+        };
+    
+    stage = new Kinetic.Stage({
+        container: 'container',
+        width: CONSTANTS.STAGE_WIDTH,
+        height: CONSTANTS.STAGE_HEIGHT
+    });
+    layer = new Kinetic.Layer();
 
-
-//bottleID < 3! Слагам този коментар, за да не забравим да го сменим после, когато добавим повече бутилки!!
-    for (bottleID = 0; bottleID < 3; bottleID += 1) { //alcohol bottles here
-        var bottle = new Kinetic.Image({
+    for (bottleID = 0, len = ALCOHOL_CONSTANTS.length; bottleID < len; bottleID += 1) { //alcohol bottles here
+        bottle = new Kinetic.Image({
             x: 10 + bottleID * BOTTLES_OFF_SET_POSITION,
             y: 15,
             image: images[bottleID],
-            width: 50,
-            height: 100,
+            width: CONSTANTS.BOTTLE_IMAGE_WIDTH,
+            height: CONSTANTS.BOTTLE_IMAGE_HEIGHT,
             draggable: true
         });
         bottle.startX = bottle.attrs.x;
@@ -113,8 +123,8 @@ function initStage(images) {
     bottles.forEach(function (bottle) {
         bottle.addEventListener('dragstart', function () {
             //console.log(bottle.id);  // add the clicked alcohol to compare with constants
-        })
-    })
+        });
+    });
 
     bottles.forEach(function (bottle) {
         bottle.addEventListener('dragend', function () {
@@ -158,42 +168,42 @@ console.log(sources);
 
 loadImages(sources, initStage);
 
-// var myButton = document.getElementById('myButton');
+var myButton = document.getElementById('myButton');
 
-// myButton.addEventListener('click', function (ev) {
-//     selectedDrinks.sort(function (firstIngredient, secondIngredient) {
-//         var sortedDrinks =  firstIngredient.localeCompare(secondIngredient);
-//         return sortedDrinks;
-//     });
+myButton.addEventListener('click', function (ev) {
+    selectedDrinks.sort(function (firstIngredient, secondIngredient) {
+        var sortedDrinks =  firstIngredient.localeCompare(secondIngredient);
+        return sortedDrinks;
+    });
 
-//     var areEqual = true;
+    var areEqual = true;
 
-//     if (!selectedDrinks.length) {
-//         areEqual = false;
-//     }
+    if (!selectedDrinks.length) {
+        areEqual = false;
+    }
 
-//     for(var i = 0, len = selectedDrinks.length; i < len; i += 1) {
-//         if(selectedDrinks[i] !== cocktail.ingredients[i]) {
-//             areEqual = false;
-//         }
-//     }
+    for(var i = 0, len = selectedDrinks.length; i < len; i += 1) {
+        if(selectedDrinks[i] !== cocktail.ingredients[i]) {
+            areEqual = false;
+        }
+    }
 
-//     if (areEqual) {
-//         endScreen();
-//     }
+    if (areEqual) {
+        endScreen();
+    }
 
-//     console.log(areEqual);
-// });
+    console.log(areEqual);
+});
 
 //END SCREEN
 //Fireworks in case you win the game
 function endScreen() {
     var SCREEN_WIDTH = window.innerWidth,
-    SCREEN_HEIGHT = window.innerHeight,
-    mousePos = {
-        x: 400,
-        y: 300
-    },
+        SCREEN_HEIGHT = window.innerHeight,
+        mousePos = {
+            x: 400,
+            y: 300
+        },
 
     // create canvas
     canvas = document.createElement('canvas'),
@@ -245,10 +255,14 @@ function endScreen() {
     }
     
     function makeParticle(count) {
+        var particle,
+            angle,
+            speed;
+            
         for (var i = 0; i < count; i++) {
-            var particle = new Particle(mousePos);
-            var angle = Math.random() * Math.PI * 2;
-            var speed = Math.random() * 10 + 2;
+            particle = new Particle(mousePos);
+            angle = Math.random() * Math.PI * 2;
+            speed = Math.random() * 10 + 2;
     
             particle.vel.x = Math.cos(angle) * speed;
             particle.vel.y = Math.sin(angle) * speed;
