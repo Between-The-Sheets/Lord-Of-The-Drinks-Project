@@ -1,17 +1,18 @@
 var selectedDrinks = [],
-    ALCOHOL_CONSTANTS = ['vodka', 'gin', 'cointreau','tequila', 'white-rum', 'dark-rum'],
+    ALCOHOL_CONSTANTS = ['vodka', 'gin', 'cointreau','tequila', 'white-rum', 'dark-rum', 'coconut-liquor', 'grenadine'],
+    NONALCOHOL_CONSTANTS = ['lime', 'mint', 'soda', 'pineapple-juice', 'orange-juice', 'coca-cola', 'tomato-juice']
     RECIPES = {
         0: {
             name: 'Long Island Iced Tea',
-            ingredients: ['gin', 'tequila', 'vodka', 'white rum']
+            ingredients: ['gin', 'tequila', 'vodka', 'white-rum']
         },
         1: {
             name: 'Mojito',
-            ingredients: ['lime', 'mint', 'soda', 'white run']
+            ingredients: ['lime', 'mint', 'soda', 'white-run']
         },
         2: {
             name: 'Pina Colada',
-            ingredients: ['coconut liquor', 'pineapple juice', 'white rum']
+            ingredients: ['coconut-liquor', 'pineapple-juice', 'white-rum']
         },
         3: {
             name: 'Cosmopolitan',
@@ -23,7 +24,7 @@ var selectedDrinks = [],
         },
         5: {
             name: 'Daiquiri',
-            ingredients: ['lime', 'white rum']
+            ingredients: ['lime', 'white-rum']
         },
         6: {
             name: 'Margarita',
@@ -31,22 +32,37 @@ var selectedDrinks = [],
         },
         7: {
             name: 'Sex on the Beach',
-            ingredients: ['pineapple juice', 'vodka']
+            ingredients: ['pineapple-juice', 'vodka']
         },
         8: {
             name: 'Cuba Libre',
-            ingredients: ['coca-cola', 'white rum']
+            ingredients: ['coca-cola', 'white-rum']
         },
         9: {
             name: 'Bloody Mery',
-            ingredients: ['tomato juice', 'vodka']
+            ingredients: ['tomato-juice', 'vodka']
         }
     },
+    CONSTANTS = {
+        STAGE_WIDTH: 1500,
+        STAGE_HEIGHT: 800,
+        BOTTLE_IMAGE_HEIGHT: 150,
+        BOTTLE_IMAGE_WIDTH: 150
+    },
     index = Math.random() * 10 | 0,
-    cocktail = RECIPES[index];
+    cocktail = RECIPES[index],
+    stage = null,
+    layer = null;
+
+    stage = new Kinetic.Stage({
+            container: 'container',
+            width: CONSTANTS.STAGE_WIDTH,
+            height: CONSTANTS.STAGE_HEIGHT
+        });
+    layer = new Kinetic.Layer();
 
 //Images must be in dom to set it in kinetic object
-function loadImages(sources, callback) {
+function loadImages(sources, callback, secondRow) {
     var images = {},
     loadedImages = 0,
     numImages = 0,
@@ -58,7 +74,7 @@ function loadImages(sources, callback) {
         images[src] = new Image();
         images[src].onload = function () {
             if (++loadedImages >= numImages) {
-                callback(images);
+                callback(images, numImages, secondRow);
             }
         };
 
@@ -80,45 +96,46 @@ function selectedDrinkIsUnique(drinksArray, drink) {
     //})
 }
 
-function initStage(images) {
-    var stage,
-        len = 0,
-        layer,
+function initStage(images, rowLength, secondRow) {
+    var len = 0,
         BOTTLES_OFF_SET_POSITION = 100,
         bottleID,
         bottles = [],
         bottle,
-        CONSTANTS = {
-            STAGE_WIDTH: 1500,
-            STAGE_HEIGHT: 800,
-            BOTTLE_IMAGE_HEIGHT: 150,
-            BOTTLE_IMAGE_WIDTH: 150
-        };
-    
-    stage = new Kinetic.Stage({
-        container: 'container',
-        width: CONSTANTS.STAGE_WIDTH,
-        height: CONSTANTS.STAGE_HEIGHT
-    });
-    layer = new Kinetic.Layer();
+        offsetY = 15,
+        imageWidth = CONSTANTS.BOTTLE_IMAGE_WIDTH,
+        imageHeight = CONSTANTS.BOTTLE_IMAGE_HEIGHT;
 
-    for (bottleID = 0, len = ALCOHOL_CONSTANTS.length; bottleID < len; bottleID += 1) { //alcohol bottles here
+    //playing with y offset and image widht/height
+    if(secondRow){
+        offsetY = secondRow;
+        imageWidth -= 50;
+    }
+
+    for (bottleID = 0; bottleID < rowLength; bottleID += 1) { //alcohol bottles here
+
         bottle = new Kinetic.Image({
             x: 10 + bottleID * BOTTLES_OFF_SET_POSITION,
-            y: 15,
+            y: offsetY,
             image: images[bottleID],
-            width: CONSTANTS.BOTTLE_IMAGE_WIDTH,
-            height: CONSTANTS.BOTTLE_IMAGE_HEIGHT,
+            width: imageWidth,
+            height: imageHeight,
             draggable: true
         });
+
         bottle.startX = bottle.attrs.x;
         bottle.startY = bottle.attrs.y;
         bottle.id = ALCOHOL_CONSTANTS[bottleID];
+        
+        if(secondRow){
+            bottle.id = NONALCOHOL_CONSTANTS[bottleID];
+        }
         bottles.push(bottle);
 
         layer.add(bottle);
-        stage.add(layer);
     }
+    
+    stage.add(layer);
     
     bottles.forEach(function (bottle) {
         bottle.addEventListener('dragstart', function () {
@@ -157,16 +174,11 @@ function initStage(images) {
     });
 }
 
-var sources = {};
+var alcoholSources = generateImagePath(ALCOHOL_CONSTANTS, ''),
+    nonalcoholSources = generateImagePath(NONALCOHOL_CONSTANTS, 'non-');
 
-for (var i = 0; i < ALCOHOL_CONSTANTS.length; i++) {
-    sources[i] = './images/' + ALCOHOL_CONSTANTS[i] + '.png';
-};
-
-console.log(sources);
-
-
-loadImages(sources, initStage);
+loadImages(alcoholSources, initStage);
+loadImages(nonalcoholSources, initStage, 256);
 
 var myButton = document.getElementById('myButton');
 
@@ -258,7 +270,7 @@ function endScreen() {
         var particle,
             angle,
             speed;
-            
+
         for (var i = 0; i < count; i++) {
             particle = new Particle(mousePos);
             angle = Math.random() * Math.PI * 2;
@@ -363,4 +375,15 @@ function endScreen() {
     }
     
     init();
+}
+
+//private method for generating image path for alcohol and non-alcohol images
+//separated in different folder names according function prefix parameter
+function generateImagePath(items, prefix){
+    var sources = {};
+    for (var i = 0; i < items.length; i++) {
+        sources[i] = './images/' + prefix + 'alcohol/' + items[i] + '.png';
+    }
+
+    return sources;
 }
