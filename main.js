@@ -145,13 +145,11 @@ function initStage(images, rowLength, secondRow) {
 
     bottles.forEach(function (bottle) {
         bottle.addEventListener('dragend', function () {
-            var startX = bottle.startX,
-                startY = bottle.startY;
-
-
             function animFrame() {
                 /** the bigger the ANYM_CCONST the smoother(slower) the bottle's retturn */
-                var ANIM_CONST = 20,
+                var startX = bottle.startX,
+                    startY = bottle.startY,
+                    ANIM_CONST = 20,
                     dragendX = bottle.attrs.x,
                     dragendY = bottle.attrs.y,
                     deltaX = ((Math.abs(startX - dragendX)) / ANIM_CONST),
