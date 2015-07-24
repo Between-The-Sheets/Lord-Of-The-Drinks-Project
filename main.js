@@ -1,6 +1,6 @@
 var selectedDrinks = [],
     ALCOHOL_CONSTANTS = ['vodka', 'gin', 'cointreau','tequila', 'white-rum', 'dark-rum', 'coconut-liquor', 'grenadine'],
-    NONALCOHOL_CONSTANTS = ['lime', 'mint', 'soda', 'pineapple-juice', 'orange-juice', 'coca-cola', 'tomato-juice']
+    NONALCOHOL_CONSTANTS = ['lime', 'mint', 'soda', 'pineapple-juice', 'orange-juice', 'coca-cola', 'tomato-juice'],
     RECIPES = {
         0: {
             name: 'Long Island Iced Tea',
