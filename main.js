@@ -46,13 +46,15 @@ var selectedDrinks = [],
     CONSTANTS = {
         STAGE_WIDTH: 1500,
         STAGE_HEIGHT: 800,
-        BOTTLE_IMAGE_HEIGHT: 150,
-        BOTTLE_IMAGE_WIDTH: 150
+        BOTTLE_IMAGE_HEIGHT: 130,
+        BOTTLE_IMAGE_WIDTH: 130,
+        NEXT_ROW_OFF_SET: 170
     },
     index = Math.random() * 10 | 0,
     cocktail = RECIPES[index],
     stage = null,
-    layer = null;
+    layer = null,
+    backgroundLayer = null;
 
 stage = new Kinetic.Stage({
     container: 'container',
@@ -60,6 +62,7 @@ stage = new Kinetic.Stage({
     height: CONSTANTS.STAGE_HEIGHT
 });
 layer = new Kinetic.Layer();
+backgroundLayer = new Kinetic.Layer();
 
 //Images must be in dom to set it in kinetic object
 function loadImages(sources, callback, secondRow) {
@@ -85,15 +88,14 @@ function loadImages(sources, callback, secondRow) {
 function selectedDrinkIsUnique(drinksArray, drink) {
     var i,
         len = drinksArray.length;
+
     for (i = 0; i < len; i += 1) {
         if (drinksArray[i] === drink) {
             return false;
         }
     }
+
     return true;
-    //return drinksArray.some(function (item) {
-    //    return item !== drink;
-    //})
 }
 
 function initStage(images, rowLength, secondRow) {
@@ -104,7 +106,10 @@ function initStage(images, rowLength, secondRow) {
         bottle,
         offsetY = 15,
         imageWidth = CONSTANTS.BOTTLE_IMAGE_WIDTH,
-        imageHeight = CONSTANTS.BOTTLE_IMAGE_HEIGHT;
+        imageHeight = CONSTANTS.BOTTLE_IMAGE_HEIGHT,
+        background,
+        img,
+        nextRowConst = 0;
 
     //playing with y offset and image widht/height
     if (secondRow) {
@@ -113,9 +118,13 @@ function initStage(images, rowLength, secondRow) {
     }
 
     for (bottleID = 0; bottleID < rowLength; bottleID += 1) { //alcohol bottles here
+        if(bottleID === 4) {
+            nextRowConst += CONSTANTS.NEXT_ROW_OFF_SET;
+        }
+
         bottle = new Kinetic.Image({
-            x: 10 + bottleID * BOTTLES_OFF_SET_POSITION,
-            y: offsetY,
+            x: (bottleID % 4) * BOTTLES_OFF_SET_POSITION,
+            y: offsetY + nextRowConst,
             image: images[bottleID],
             width: imageWidth,
             height: imageHeight,
@@ -134,6 +143,19 @@ function initStage(images, rowLength, secondRow) {
         layer.add(bottle);
     }
 
+    img = new Image();
+    img.src = 'images/background.png';
+    background = new Kinetic.Image({
+        x: 0,
+        y: 0,
+        image: img,
+        width: 1500,
+        height: 800
+    });
+
+    backgroundLayer.add(background);
+    stage.add(backgroundLayer);
+    stage.draw();
     stage.add(layer);
 
     bottles.forEach(function (bottle) {
@@ -221,7 +243,7 @@ var alcoholSources = generateImagePath(ALCOHOL_CONSTANTS, ''),
     nonalcoholSources = generateImagePath(NONALCOHOL_CONSTANTS, 'non-');
 
 loadImages(alcoholSources, initStage);
-loadImages(nonalcoholSources, initStage, 256);
+loadImages(nonalcoholSources, initStage, CONSTANTS.NEXT_ROW_OFF_SET * 2);
 
 var myButton = document.getElementById('myButton');
 
