@@ -61,8 +61,8 @@ stage = new Kinetic.Stage({
     width: CONSTANTS.STAGE_WIDTH,
     height: CONSTANTS.STAGE_HEIGHT
 });
-layer = new Kinetic.Layer();
 backgroundLayer = new Kinetic.Layer();
+layer = new Kinetic.Layer();
 
 //Images must be in dom to set it in kinetic object
 function loadImages(sources, callback, secondRow) {
@@ -111,6 +111,25 @@ function initStage(images, rowLength, secondRow) {
         img,
         nextRowConst = 0;
 
+    var imageObj = new Image();
+    imageObj.onload = function() {
+        background = new Kinetic.Image({
+            x: 0,
+            y: 0,
+            image: imageObj,
+            width: 1500,
+            height: 800
+        });
+
+        backgroundLayer.add(background);
+
+        stage.add(backgroundLayer);
+        stage.add(layer);
+        stage.draw();
+
+    };
+    imageObj.src = 'images/background.png';
+
     //playing with y offset and image widht/height
     if (secondRow) {
         offsetY = secondRow;
@@ -143,20 +162,8 @@ function initStage(images, rowLength, secondRow) {
         layer.add(bottle);
     }
 
-    img = new Image();
-    img.src = 'images/background.png';
-    background = new Kinetic.Image({
-        x: 0,
-        y: 0,
-        image: img,
-        width: 1500,
-        height: 800
-    });
-
-    backgroundLayer.add(background);
-    stage.add(backgroundLayer);
-    stage.draw();
     stage.add(layer);
+    stage.draw();
 
     bottles.forEach(function (bottle) {
         bottle.addEventListener('dragstart', function () {
