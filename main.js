@@ -181,7 +181,7 @@ function initStage(images, rowLength, secondRow) {
                 /** the bigger the ANYM_CCONST the smoother(slower) the bottle's retturn */
                 var startX = bottle.startX,
                     startY = bottle.startY,
-                    ANIM_CONST = 20,
+                    ANIM_CONST = 10,
                     dragendX = bottle.attrs.x,
                     dragendY = bottle.attrs.y,
                     deltaX = ((Math.abs(startX - dragendX)) / ANIM_CONST),
@@ -199,7 +199,6 @@ function initStage(images, rowLength, secondRow) {
                     if (bottle.attrs.x >= startX) {
                         bottle.setX(x);
                         bottle.setY(y);
-                        layer.draw();
                     }
                 }
                 else if (dragendX <= startX) {
@@ -214,9 +213,11 @@ function initStage(images, rowLength, secondRow) {
                     if (bottle.attrs.x <= startX) {
                         bottle.setX(x);
                         bottle.setY(y);
-                        layer.draw();
                     }
                 }
+
+                layer.draw();
+
                 setTimeout(animFrame, 10);
             }
 
