@@ -86,7 +86,7 @@ function loadImages(sources, callback, secondRow) {
     }
 
     desiredCocktail = document.getElementById('cocktailName');
-    desiredCocktail.innerHTML = cocktail.name;
+    desiredCocktail.innerHTML = 'Your desired cocktail: ' + cocktail.name;
 }
 
 function selectedDrinkIsUnique(drinksArray, drink) {
