@@ -69,7 +69,8 @@ function loadImages(sources, callback, secondRow) {
     var images = {},
         loadedImages = 0,
         numImages = 0,
-        src;
+        src,
+        desiredCocktail;
 
     numImages = Object.keys(sources).length;
 
@@ -83,6 +84,9 @@ function loadImages(sources, callback, secondRow) {
 
         images[src].src = sources[src];
     }
+
+    desiredCocktail = document.getElementById('cocktailName');
+    desiredCocktail.innerHTML = cocktail.name;
 }
 
 function selectedDrinkIsUnique(drinksArray, drink) {

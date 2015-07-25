@@ -37,3 +37,17 @@
     left: 1275px;
     position: absolute;
 }
+
+#cocktailName {
+    top: 8px;
+    left: 1111px;
+    position: absolute;
+    border-radius:8px;
+    cursor:pointer;
+    color:#ffffff;
+    font-family:Arial;
+    font-size:28px;
+    font-weight:bold;
+    padding:15px 39px;
+    text-decoration:none;
+}
