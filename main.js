@@ -1,3 +1,11 @@
+var bartenderSelected = document.getElementById('start-screen');
+
+//TODO get event by target/function etc
+bartenderSelected.addEventListener('click', function() {
+    var startScreen = document.getElementById('start-screen').style.display = 'none';
+    var container = document.getElementById('container').style.display = 'block';
+})
+
 var selectedDrinks = [],
     ALCOHOL_CONSTANTS = ['vodka', 'gin', 'cointreau', 'tequila', 'white-rum', 'dark-rum', 'coconut-liquor', 'grenadine'],
     NONALCOHOL_CONSTANTS = ['lime', 'mint', 'soda', 'pineapple-juice', 'orange-juice', 'coca-cola', 'tomato-juice'],
@@ -61,6 +69,7 @@ stage = new Kinetic.Stage({
     width: CONSTANTS.STAGE_WIDTH,
     height: CONSTANTS.STAGE_HEIGHT
 });
+
 backgroundLayer = new Kinetic.Layer();
 layer = new Kinetic.Layer();
 
