@@ -1,10 +1,12 @@
 var bartenderSelected = document.getElementById('start-screen');
 
-//TODO get event by target/function etc
+//TODO get event by target/function etc and trigger bartender appearance animation according to selection
 bartenderSelected.addEventListener('click', function() {
     var startScreen = document.getElementById('start-screen').style.display = 'none';
     var container = document.getElementById('container').style.display = 'block';
-})
+    var desiredCocktail = document.getElementById('cocktailName').style.display = 'block';
+    var button = document.getElementById('myButton').style.display = 'block';
+});
 
 var selectedDrinks = [],
     ALCOHOL_CONSTANTS = ['vodka', 'gin', 'cointreau', 'tequila', 'white-rum', 'dark-rum', 'coconut-liquor', 'grenadine'],
@@ -187,7 +189,7 @@ function initStage(images, rowLength, secondRow) {
     bottles.forEach(function (bottle) {
         bottle.addEventListener('dragend', function () {
             function animFrame() {
-                /** the bigger the ANYM_CCONST the smoother(slower) the bottle's retturn */
+                /** the bigger the ANIM_CONST, the smoother(slower) the bottle's return */
                 var startX = bottle.startX,
                     startY = bottle.startY,
                     ANIM_CONST = 10,
