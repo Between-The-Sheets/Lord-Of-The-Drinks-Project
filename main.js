@@ -1,11 +1,13 @@
-var bartenderSelected = document.getElementById('start-screen');
+var bartenderSelected = document.getElementById('start-screen'),
+    sound = document.getElementById('sound');
 
 //TODO get event by target/function etc and trigger bartender appearance animation according to selection
-bartenderSelected.addEventListener('click', function() {
+bartenderSelected.addEventListener('click', function(ev) {
     var startScreen = document.getElementById('start-screen').style.display = 'none';
     var container = document.getElementById('container').style.display = 'block';
     var desiredCocktail = document.getElementById('cocktailName').style.display = 'block';
     var button = document.getElementById('myButton').style.display = 'block';
+    showBartender(ev.target);
 });
 
 var selectedDrinks = [],
@@ -65,7 +67,19 @@ var selectedDrinks = [],
     stage = null,
     layer = null,
     backgroundLayer = null;
-
+    bartendersSounds = {
+        'niki': ['sounds/sound.wav'],
+        'doncho': [
+            'sounds/Doncho - nazdrave.wav',
+            'sounds/Doncho - v kenvasa nazdrave.wav'
+        ],
+        'evlogi' : ['sounds/Evlogi - Moga da si pravq kvot si iskam.wav'],
+        'ivo' : [
+            'sounds/Ivo - Kyde sa aplodismentite.wav',
+            'sounds/Ivo - naprovo mi burka v ushite.wav',
+            'sounds/Ivo - Tva e redovna greshka taka che vse taq.wav'
+        ]
+    },
 stage = new Kinetic.Stage({
     container: 'container',
     width: CONSTANTS.STAGE_WIDTH,
@@ -75,6 +89,14 @@ stage = new Kinetic.Stage({
 backgroundLayer = new Kinetic.Layer();
 layer = new Kinetic.Layer();
 
+function showBartender(target){
+    var barTender = target.getAttribute('id');
+    var soundFile = bartendersSounds[barTender][Math.floor(Math.random() * bartendersSounds[barTender].length)];
+
+    console.log(soundFile);
+    sound.src = soundFile;
+    sound.play();
+}
 //Images must be in dom to set it in kinetic object
 function loadImages(sources, callback, secondRow) {
     var images = {},
