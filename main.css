@@ -1,8 +1,10 @@
+* {
+    font-family: 'Cardo', serif;
+}
 #container, #myButton, #cocktailName {
     display: none;
 }
 h1{
-   font-family: Arial;
     font-size: 70px;
     text-align: center;
 }
@@ -58,4 +60,7 @@ h1{
     padding:15px 39px;
     text-decoration:none;
     width: 350px;
+}
+img:hover {
+    cursor: pointer;
 }

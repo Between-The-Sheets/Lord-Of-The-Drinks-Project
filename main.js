@@ -187,9 +187,39 @@ function initStage(images, rowLength, secondRow) {
     });
 
     bottles.forEach(function (bottle) {
-        bottle.addEventListener('dragend', function () {
+        bottle.addEventListener('dragend', function (ev) {
+            var tween;
+            function rorateBottle(){
+                tween = new Kinetic.Tween({
+                  node : bottle,
+                  rotation : 135,
+                  // easing: Kinetic.Easings.EaseInOut,
+                  easing: Kinetic.Easings.EaseInOut,
+                  duration: 1,
+                  onFinish: rotateBack
+                });
+
+                tween.play();
+            }
+
+            function rotateBack(){
+                tween = new Kinetic.Tween({
+                  node : bottle,
+                  rotation : 0,
+                  // easing: Kinetic.Easings.EaseInOut,
+                  easing: Kinetic.Easings.EaseInOut,
+                  duration: 1,
+                  onFinish: animFrame
+                });
+
+                tween.play();
+            }
+
+            rorateBottle();
+            
             function animFrame() {
-                /** the bigger the ANIM_CONST, the smoother(slower) the bottle's return */
+                /** the bigger the ANYM_CONST the smoother(slower) the bottle's retturn */
+
                 var startX = bottle.startX,
                     startY = bottle.startY,
                     ANIM_CONST = 10,
@@ -213,6 +243,7 @@ function initStage(images, rowLength, secondRow) {
                     }
                 }
                 else if (dragendX <= startX) {
+
                     x = bottle.getX() + deltaX;
 
                     if (dragendY < startY) {
@@ -229,7 +260,7 @@ function initStage(images, rowLength, secondRow) {
 
                 layer.draw();
 
-                setTimeout(animFrame, 10);
+                requestAnimationFrame(animFrame);
             }
 
             // if (dragendX  && dragendY /* are over the shaker*/) {
@@ -238,7 +269,7 @@ function initStage(images, rowLength, secondRow) {
             //     //should we punish for not making it to the shaker? "are you drunk already?":)
             // }
             
-            animFrame();
+            //animFrame();
 
             if ((selectedDrinkIsUnique(selectedDrinks, bottle.id))) {
                 selectedDrinks.push(bottle.id);
