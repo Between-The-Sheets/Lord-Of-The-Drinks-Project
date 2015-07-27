@@ -5,8 +5,16 @@
     display: none;
 }
 h1{
+    font-family: "Ringbearer";
     font-size: 70px;
     text-align: center;
+    color: black;
+}
+
+.start{
+    background-image: url("images/start-background.jpg");
+    width: 1600px;
+    height: 800px;
 }
 #myButton {
     -moz-box-shadow:inset 0px 1px 0px 0px #9acc85;
