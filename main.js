@@ -12,8 +12,8 @@ bartenderSelected.addEventListener('click', function(ev) {
 });
 
 var selectedDrinks = [],
-    ALCOHOL_CONSTANTS = ['vodka', 'gin', 'cointreau', 'tequila', 'white-rum', 'dark-rum', 'coconut-liquor', 'grenadine'],
-    NONALCOHOL_CONSTANTS = ['lime', 'mint', 'soda', 'pineapple-juice', 'orange-juice', 'coca-cola', 'tomato-juice'],
+    ALCOHOL_CONSTANTS = ['vodka', 'gin', 'cointreau', 'dark-rum', 'white-rum', 'coconut-liquor', 'grenadine', 'tequila', 'whiskey', 'baileys'],
+    NONALCOHOL_CONSTANTS = ['coca-cola', 'soda', 'orange-juice', 'tomato-juice', 'pineapple-juice', 'red-bull', 'sprite', 'tonic', 'lime', 'mint'],
     RECIPES = {
         0: {
             name: 'Long Island Iced Tea',
@@ -146,7 +146,7 @@ function selectedDrinkIsUnique(drinksArray, drink) {
 
 function initStage(images, rowLength, secondRow) {
     var len = 0,
-        BOTTLES_OFF_SET_POSITION = 100,
+        BOTTLES_OFF_SET_POSITION = 85,
         bottleID,
         bottles = [],
         bottle,
@@ -185,12 +185,12 @@ function initStage(images, rowLength, secondRow) {
     }
 
     for (bottleID = 0; bottleID < rowLength; bottleID += 1) { //alcohol bottles here
-        if(bottleID === 4) {
+        if(bottleID === 5) {
             nextRowConst += CONSTANTS.NEXT_ROW_OFF_SET;
         }
 
         bottle = new Kinetic.Image({
-            x: (bottleID % 4) * BOTTLES_OFF_SET_POSITION,
+            x: (bottleID % 5) * BOTTLES_OFF_SET_POSITION,
             y: offsetY + nextRowConst,
             image: images[bottleID],
             width: imageWidth,
