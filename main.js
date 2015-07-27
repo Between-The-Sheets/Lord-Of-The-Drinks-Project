@@ -69,7 +69,13 @@ var selectedDrinks = [],
     layer = null,
     backgroundLayer = null;
     bartendersSounds = {
-        'niki': ['sounds/sound.wav'],
+        'niki': [
+            'sounds/Niki/Niki - i sys sigurnost shte psuvate.wav',
+            'sounds/Niki/Niki - Mnogo si glupav.wav',
+            'sounds/Niki/Niki - Ne se oplakva mnogo mnogo.wav',
+            'sounds/Niki/Niki - stryaskashto.wav',
+            'sounds/Niki/Niki - Vsichko e prekrasno.wav'
+        ],
         'doncho': [
             'sounds/Doncho/Doncho - nazdrave.wav',
             'sounds/Doncho/Doncho - v kenvasa nazdrave.wav'
