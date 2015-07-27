@@ -71,14 +71,14 @@ var selectedDrinks = [],
     bartendersSounds = {
         'niki': ['sounds/sound.wav'],
         'doncho': [
-            'sounds/Doncho - nazdrave.wav',
-            'sounds/Doncho - v kenvasa nazdrave.wav'
+            'sounds/Doncho/Doncho - nazdrave.wav',
+            'sounds/Doncho/Doncho - v kenvasa nazdrave.wav'
         ],
         'evlogi' : ['sounds/Evlogi - Moga da si pravq kvot si iskam.wav'],
         'ivo' : [
-            'sounds/Ivo - Kyde sa aplodismentite.wav',
-            'sounds/Ivo - naprovo mi burka v ushite.wav',
-            'sounds/Ivo - Tva e redovna greshka taka che vse taq.wav'
+            'sounds/Ivo/Ivo - Kyde sa aplodismentite.wav',
+            'sounds/Ivo/Ivo - naprovo mi burka v ushite.wav',
+            'sounds/Ivo/Ivo - Tva e redovna greshka taka che vse taq.wav'
         ]
     },
 stage = new Kinetic.Stage({
