@@ -1,7 +1,7 @@
 * {
     font-family: 'Cardo', serif;
 }
-#container, #myButton, #cocktailName {
+#container, #myButton, #cocktailName, #bartenderFace {
     display: none;
 }
 h1{
@@ -60,6 +60,13 @@ h1{
     padding:15px 39px;
     text-decoration:none;
     width: 350px;
+}
+#bartenderFace {
+  width: 450px;
+  height: 450px;
+  position: absolute;
+  top: -57px;
+  left: 780px;
 }
 img:hover {
     cursor: pointer;

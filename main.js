@@ -7,6 +7,7 @@ bartenderSelected.addEventListener('click', function(ev) {
     var container = document.getElementById('container').style.display = 'block';
     var desiredCocktail = document.getElementById('cocktailName').style.display = 'block';
     var button = document.getElementById('myButton').style.display = 'block';
+    var bartenderFace = document.getElementById('bartenderFace').style.display = 'block';
     showBartender(ev.target);
 });
 
@@ -92,6 +93,8 @@ layer = new Kinetic.Layer();
 function showBartender(target){
     var barTender = target.getAttribute('id');
     var soundFile = bartendersSounds[barTender][Math.floor(Math.random() * bartendersSounds[barTender].length)];
+    
+    document.getElementById('bartenderFace').src = 'images/bartenders/' + target.id + '.png';
 
     console.log(soundFile);
     sound.src = soundFile;
@@ -147,7 +150,9 @@ function initStage(images, rowLength, secondRow) {
         background,
         img,
         nextRowConst = 0;
-
+    
+    
+    //draw background
     var imageObj = new Image();
     imageObj.onload = function() {
         background = new Kinetic.Image({
@@ -166,6 +171,7 @@ function initStage(images, rowLength, secondRow) {
 
     };
     imageObj.src = 'images/background.png';
+    
 
     //playing with y offset and image widht/height
     if (secondRow) {
