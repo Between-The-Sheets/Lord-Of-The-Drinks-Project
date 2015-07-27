@@ -4,16 +4,19 @@ Application to test your knowledge about cocktails mixing(Telerik JS UI &amp; DO
 ## The desired result
 
 
-* Start page - click New Cocktail (backgroud picture)
-* A random cocktail will be given where one or more ingredients need to be dragged to the shaker or glass.
-* After click - main page opens - background layer to be added - shelves and shaker/glass.
-* Drag the bottles(rectangle with a picture over the top) or click and they move on a pre-calculated route.
-* Bottles/juices etc will be poured into shaker/glass.(animate liquid going in from bottle) 
-* Sound of pouring liquid.
+* TODO : Start page - click Bartender, sound on hover, music
+* DONE: A random cocktail will be given where one or more ingredients need to be dragged to the shaker or glass.
+* DONE: After click - main page opens - background layer to be added - shelves and shaker/glass.
+* DONE: Drag the bottles(kinetic image) and move them to shaker.
+* TODO: Rotate Bottles/juices when poured into shaker/glass.(animate liquid going in from bottle/rotation) 
+* TODO: Sound of pouring liquid.
+* TODO: Add condition when the bottle reaches shaker (coordinates of bartender to be used)
 * When the button ready is pressed:
-  * Animate the shaker to bounce around + sound/ or if glass - liquid filling it to the top.
-  * Using constants for recipes and bottle ids collected check the ingredients against our recipe.
-  * Fireworks for correct ingredients or boos for wrong ones.
+  * TODO: SVG shaker to appear/bartender to disappear.
+  * TODO: Animate the shaker to bounce around + sound.
+  * DONE: Using constants for recipes and bottle ids collected check the ingredients against our recipe.
+  * DONE: Fireworks for correct ingredients or boos for wrong ones.
+  * * TODO: Make better endscreen, add disclaimer(may be in Bulgarian) "All characters appearing in this work are fictitious. Any resemblance to real persons, living or dead, is purely coincidental."
 
 ## Project requirements
 
@@ -21,16 +24,16 @@ Implement a client-side JavaScript application using the HTML graphic APIs – c
 
 ## General Requirements
 
-* Use the HTML5 canvas
-* Or a Canvas framework like KineticJS, paper.js or other
-* Use SVG
-* Or a SVG framework like Raphael JS or other
-* Create animations
-* Either for the canvas, SVG or both
-* The application must work in the latest versions of the browsers: Google Chrome, Mozilla Firefox, Internet Explorer 10/11, Opera and Apple Safari
-* Brief documentation of your project (2-3 pages).
+* MET: Use the HTML5 canvas
+* MET: Or a Canvas framework like KineticJS, paper.js or other
+* TODO: Use SVG
+* TODO: Or a SVG framework like Raphael JS or other
+* MET: Create animations
+* MET: Either for the canvas, SVG or both
+* TODO: (test Safari)The application must work in the latest versions of the browsers: Google Chrome, Mozilla Firefox, Internet Explorer 10/11, Opera and Apple Safari
+* TODO: Brief documentation of your project (2-3 pages).
 
-## Additional Requirements
+## TODO: Additional Requirements 
 
 * Follow the best practices for producing high-quality code:
 * Correct naming
