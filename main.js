@@ -80,10 +80,10 @@ var selectedDrinks = [],
             'sounds/Doncho/Doncho - nazdrave.wav',
             'sounds/Doncho/Doncho - v kenvasa nazdrave.wav'
         ],
-        'evlogi' : ['sounds/Evlogi - Moga da si pravq kvot si iskam.wav'],
+        'evlogi' : ['sounds/Evlogi/Evlogi - Moga da si pravq kvot si iskam.wav'],
         'ivo' : [
             'sounds/Ivo/Ivo - Kyde sa aplodismentite.wav',
-            'sounds/Ivo/Ivo - naprovo mi burka v ushite.wav',
+            'sounds/Ivo/Ivo - napravo mi burka v ushite.wav',
             'sounds/Ivo/Ivo - Tva e redovna greshka taka che vse taq.wav'
         ]
     },
@@ -182,7 +182,6 @@ function initStage(images, rowLength, secondRow) {
     //playing with y offset and image widht/height
     if (secondRow) {
         offsetY = secondRow;
-        imageWidth -= 50;
     }
 
     for (bottleID = 0; bottleID < rowLength; bottleID += 1) { //alcohol bottles here
