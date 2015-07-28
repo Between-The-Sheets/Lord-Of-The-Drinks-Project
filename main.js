@@ -307,9 +307,9 @@
     });
 
     reset.addEventListener('click', function (ev) {
-         document.getElementById('start-screen').style.display = 'block',
-         document.getElementById('container').style.display = 'none',
-         document.getElementById('cocktailName').style.display = 'none',
+         document.getElementById('start-screen').style.display = 'block';
+         document.getElementById('container').style.display = 'none';
+         document.getElementById('cocktailName').style.display = 'none';
          document.getElementById('bartenderFace').style.display = 'none';
 
         myButton.style.display = 'none';
