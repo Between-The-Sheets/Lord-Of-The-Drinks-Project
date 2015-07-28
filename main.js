@@ -38,13 +38,13 @@
             'sounds/Doncho/Doncho- Kvo staa siga - nishtu.wav'
         ],
         'evlogi': [
+            'sounds/Evlogi/Evlogi - Moga da si pravya vsyakakvi neshta kvot mi hrumne na akyla.wav',
+            'sounds/Evlogi/Evlogi - She vidim kak shse spravim.wav',
             'sounds/Evlogi/Evlogi - Izglezhda grozno.wav',
             'sounds/Evlogi/Evlogi - Kvot mi hrumne na akyla.wav',
             'sounds/Evlogi/Evlogi - Moga da si pravq kvot si iskam.wav',
-            'sounds/Evlogi/Evlogi - Moga da si pravya vsyakakvi neshta kvot mi hrumne na akyla.wav',
             'sounds/Evlogi/Evlogi - Ne se plashete.wav',
             'sounds/Evlogi/Evlogi - Oshte po-grozno ot predi.wav',
-            'sounds/Evlogi/Evlogi - She vidim kak shse spravim.wav',
             'sounds/Evlogi/Evlogi - Uha bravo be.wav'
         ],
         'ivo': [
@@ -55,13 +55,15 @@
             'sounds/Ivo/Ivo - Tva e edin chichka koito e prekalyaval s alkohola obache e mnogo dobyr v programiraneto.wav',
             'sounds/Ivo/Ivo - Tva e redovna greshka taka che vse taq.wav'
         ]
-    };
+    },
+        bartender,
+        soundIndex = 0;
 
     bartenderSelected.addEventListener('click', function (ev) {
-        var startScreen = document.getElementById('start-screen').style.display = 'none',
-            container = document.getElementById('container').style.display = 'block',
-            desiredCocktail = document.getElementById('cocktailName').style.display = 'block',
-            bartenderFace = document.getElementById('bartenderFace').style.display = 'block';
+        document.getElementById('start-screen').style.display = 'none';
+        document.getElementById('container').style.display = 'block';
+        document.getElementById('cocktailName').style.display = 'block';
+        document.getElementById('bartenderFace').style.display = 'block';
         showBartender(ev.target);
 
         myButton.style.display = 'block';
@@ -78,12 +80,11 @@
     layer = new Kinetic.Layer();
 
     function showBartender(target) {
-        var barTender = target.getAttribute('id');
-        var soundFile = bartendersSounds[barTender][Math.floor(Math.random() * bartendersSounds[barTender].length)];
+        bartender = target.getAttribute('id');
+        var soundFile = bartendersSounds[bartender][0];
 
         document.getElementById('bartenderFace').src = 'images/bartenders/' + target.id + '.png';
 
-        console.log(soundFile);
         sound.src = soundFile;
         sound.play();
     }
@@ -194,9 +195,19 @@
         stage.add(layer);
         stage.draw();
 
-        bottles.forEach(function (bottle) {
-            bottle.addEventListener('dragstart', function () {
-                // TODO: add relative bartender sound here
+        bottles.forEach(function (bottle) {  // TODO: fix it completely method works till it gets to the end of soundfiles, then skips one and starts working again odd behaviour
+            bottle.addEventListener('dragstart', function (ev) {
+               var soundOfBartender = new Audio(),
+                   currentSound;
+                if (soundIndex < bartendersSounds[bartender].length) {
+                    ++soundIndex;
+
+                } else {
+                    soundIndex = 0;
+                }
+                currentSound = bartendersSounds[bartender][soundIndex];
+                soundOfBartender.src = currentSound;
+                soundOfBartender.play();
             });
         });
 
@@ -262,7 +273,6 @@
                 console.log(bottle.id);
             })
         })
-
 
         layer.on('mouseover', function (evt) {
             var shape = evt.shape;
