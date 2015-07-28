@@ -80,7 +80,7 @@ img {
 .red:hover {
     background: #bc3315 linear-gradient(to bottom, #bc3315 5%, #d0451b 100%) repeat scroll 0 0;
 }
-#cocktailName,{
+#cocktailName {
     top: 8px;
     left: 1111px;
     position: absolute;
