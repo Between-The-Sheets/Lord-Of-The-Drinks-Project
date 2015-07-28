@@ -22,11 +22,11 @@
         backgroundLayer = null,
     bartendersSounds = {
         'niki': [
-            'sounds/Niki/Niki - i sys sigurnost shte psuvate.wav',
-            'sounds/Niki/Niki - Mnogo si glupav.wav',
-            'sounds/Niki/Niki - Ne se oplakva mnogo mnogo.wav',
-            'sounds/Niki/Niki - stryaskashto.wav',
-            'sounds/Niki/Niki - Vsichko e prekrasno.wav'
+           'sounds/Niki/Niki - i sys sigurnost shte psuvate.wav',
+           'sounds/Niki/Niki - Mnogo si glupav.wav',
+           'sounds/Niki/Niki - Ne se oplakva mnogo mnogo.wav',
+           'sounds/Niki/Niki - stryaskashto.wav',
+           'sounds/Niki/Niki - Vsichko e prekrasno.wav'
         ],
         'doncho': [
             'sounds/Doncho/Doncho - Blagodarya blagodarya vi.wav',
@@ -196,7 +196,7 @@
 
         bottles.forEach(function (bottle) {
             bottle.addEventListener('dragstart', function () {
-                //console.log(bottle.id);  // add the clicked alcohol to compare with constants
+                // TODO: add relative bartender sound here
             });
         });
 
@@ -209,7 +209,7 @@
                      dragDistanceX >= 650 &&
                      dragDistanceY <= 500) {
                     var tween;
-                    function rorateBottle() {
+                    function rotateBottle() {
                         tween = new Kinetic.Tween({
                             node: bottle,
                             rotation: 135,
@@ -233,7 +233,7 @@
                         tween.play();
                     }
 
-                    rorateBottle();
+                    rotateBottle();
                 } else {
                     animFrame();
                 }
@@ -307,10 +307,10 @@
     });
 
     reset.addEventListener('click', function (ev) {
-        var startScreen = document.getElementById('start-screen').style.display = 'block',
-            container = document.getElementById('container').style.display = 'none',
-            desiredCocktail = document.getElementById('cocktailName').style.display = 'none',
-            bartenderFace = document.getElementById('bartenderFace').style.display = 'none';
+         document.getElementById('start-screen').style.display = 'block',
+         document.getElementById('container').style.display = 'none',
+         document.getElementById('cocktailName').style.display = 'none',
+         document.getElementById('bartenderFace').style.display = 'none';
 
         myButton.style.display = 'none';
         reset.style.display = 'none';
@@ -321,15 +321,15 @@
     //END SCREEN
     //Fireworks in case you win the game
     function endScreen() {
-        var SCREEN_WIDTH = window.innerWidth,
-            SCREEN_HEIGHT = window.innerHeight,
+        var SCREEN_WIDTH = CONSTANTS.STAGE_WIDTH;
+            SCREEN_HEIGHT = CONSTANTS.STAGE_HEIGHT;
             mousePos = {
                 x: 400,
                 y: 300
-            },
+            };
 
-            // create canvas
-            canvas = document.createElement('canvas'),
+            // display canvas
+            document.getElementById('canvas').style.display = 'block',
             context = canvas.getContext('2d'),
             particles = [],
             MAX_PARTICLES = 300;
@@ -478,13 +478,18 @@
         }
 
         function init() {
-            document.body.innerHTML = '';
-            document.body.appendChild(canvas);
-            canvas.width = SCREEN_WIDTH;
-            canvas.height = SCREEN_HEIGHT;
             setInterval(loop, 1000 / 30);
+            showCredits();
         }
+        function showCredits(){
+            document.getElementById('start-screen').style.display = 'none';
+            document.getElementById('container').style.display = 'none';
+            document.getElementById('cocktailName').style.display = 'none';
+            document.getElementById('bartenderFace').style.display = 'none';
+            document.getElementById('end-canvas-div').style.display = 'block';
+            document.getElementById('endScreen').style.display = 'block';
 
+        }
         init();
     }
 

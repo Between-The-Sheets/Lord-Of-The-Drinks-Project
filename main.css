@@ -1,7 +1,7 @@
 * {
     font-family: 'Ringbearer', serif;
 }
-#container, .btn, #cocktailName, #bartenderFace {
+#container, .btn, #cocktailName, #bartenderFace, #endScreen {
     display: none;
 }
 h1{
@@ -80,7 +80,7 @@ img {
 .red:hover {
     background: #bc3315 linear-gradient(to bottom, #bc3315 5%, #d0451b 100%) repeat scroll 0 0;
 }
-#cocktailName {
+#cocktailName,{
     top: 8px;
     left: 1111px;
     position: absolute;
@@ -101,4 +101,19 @@ img {
 }
 img:hover {
     cursor: pointer;
+}
+#endScreen {
+    width: 500px;
+    height: 500px;
+    position:absolute;
+    top:20px;
+    left:30px;
+    color:#ffffff;
+}
+#end-canvas-div{
+    display: none;
+    text-align: center;
+    position: relative;
+    font-size:28px;
+    font-weight:bold;
 }
