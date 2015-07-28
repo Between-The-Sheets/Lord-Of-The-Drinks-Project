@@ -1,61 +1,13 @@
-var bartenderSelected = document.getElementById('start-screen'),
-    sound = document.getElementById('sound');
-
-//TODO get event by target/function etc and trigger bartender appearance animation according to selection
-bartenderSelected.addEventListener('click', function(ev) {
-    var startScreen = document.getElementById('start-screen').style.display = 'none';
-    var container = document.getElementById('container').style.display = 'block';
-    var desiredCocktail = document.getElementById('cocktailName').style.display = 'block';
-    var button = document.getElementById('myButton').style.display = 'block';
-    var bartenderFace = document.getElementById('bartenderFace').style.display = 'block';
-    showBartender(ev.target);
-});
-
-var selectedDrinks = [],
-    ALCOHOL_CONSTANTS = ['vodka', 'gin', 'cointreau', 'dark-rum', 'white-rum', 'coconut-liquor', 'grenadine', 'tequila', 'whiskey', 'baileys'],
-    NONALCOHOL_CONSTANTS = ['coca-cola', 'soda', 'orange-juice', 'tomato-juice', 'pineapple-juice', 'red-bull', 'sprite', 'tonic', 'lime', 'mint'],
-    RECIPES = {
-        0: {
-            name: 'Long Island Iced Tea',
-            ingredients: ['gin', 'tequila', 'vodka', 'white-rum']
-        },
-        1: {
-            name: 'Mojito',
-            ingredients: ['lime', 'mint', 'soda', 'white-run']
-        },
-        2: {
-            name: 'Pina Colada',
-            ingredients: ['coconut-liquor', 'pineapple-juice', 'white-rum']
-        },
-        3: {
-            name: 'Cosmopolitan',
-            ingredients: ['cointreau', 'lime', 'vodka']
-        },
-        4: {
-            name: 'Tequila Sunrise',
-            ingredients: ['grenadine', 'orange juice', 'tequila']
-        },
-        5: {
-            name: 'Daiquiri',
-            ingredients: ['lime', 'white-rum']
-        },
-        6: {
-            name: 'Margarita',
-            ingredients: ['cointreau', 'lime', 'tequila']
-        },
-        7: {
-            name: 'Sex on the Beach',
-            ingredients: ['pineapple-juice', 'vodka']
-        },
-        8: {
-            name: 'Cuba Libre',
-            ingredients: ['coca-cola', 'white-rum']
-        },
-        9: {
-            name: 'Bloody Mery',
-            ingredients: ['tomato-juice', 'vodka']
-        }
-    },
+(function(){
+    var bartenderSelected = document.getElementById('start-screen'),
+    sound = document.getElementById('sound'),
+    myButton = document.getElementById('myButton'),
+    reset = document.getElementById('reset'),
+    selectedDrinks = [],
+    ALCOHOL_CONSTANTS = bar.getAlcohol(),
+    NONALCOHOL_CONSTANTS = bar.getNonAlcohol(),
+    SUBSTANCES = bar.getSubstances(),
+    RECIPES = bar.getRecipes(),
     CONSTANTS = {
         STAGE_WIDTH: 1500,
         STAGE_HEIGHT: 800,
@@ -87,6 +39,19 @@ var selectedDrinks = [],
             'sounds/Ivo/Ivo - Tva e redovna greshka taka che vse taq.wav'
         ]
     },
+
+//TODO get event by target/function etc and trigger bartender appearance animation according to selection
+bartenderSelected.addEventListener('click', function(ev) {
+    var startScreen = document.getElementById('start-screen').style.display = 'none',
+        container = document.getElementById('container').style.display = 'block',
+        desiredCocktail = document.getElementById('cocktailName').style.display = 'block',
+        bartenderFace = document.getElementById('bartenderFace').style.display = 'block';
+        showBartender(ev.target);
+
+        myButton.style.display = 'block';
+        reset.style.display = 'block';
+});
+
 stage = new Kinetic.Stage({
     container: 'container',
     width: CONSTANTS.STAGE_WIDTH,
@@ -221,34 +186,36 @@ function initStage(images, rowLength, secondRow) {
 
     bottles.forEach(function (bottle) {
         bottle.addEventListener('dragend', function (ev) {
-            var tween;
-            function rorateBottle(){
-                tween = new Kinetic.Tween({
-                  node : bottle,
-                  rotation : 135,
-                  // easing: Kinetic.Easings.EaseInOut,
-                  easing: Kinetic.Easings.EaseInOut,
-                  duration: 1,
-                  onFinish: rotateBack
-                });
+            if(SUBSTANCES.indexOf(bottle.id) < 0){
+                var tween;
+                function rorateBottle(){
+                    tween = new Kinetic.Tween({
+                      node : bottle,
+                      rotation : 135,
+                      easing: Kinetic.Easings.EaseInOut,
+                      duration: 1,
+                      onFinish: rotateBack
+                    });
 
-                tween.play();
+                    tween.play();
+                }
+
+                function rotateBack(){
+                    tween = new Kinetic.Tween({
+                      node : bottle,
+                      rotation : 0,
+                      easing: Kinetic.Easings.EaseInOut,
+                      duration: 1,
+                      onFinish: animFrame
+                    });
+
+                    tween.play();
+                }
+
+                rorateBottle();
+            } else {
+                animFrame();
             }
-
-            function rotateBack(){
-                tween = new Kinetic.Tween({
-                  node : bottle,
-                  rotation : 0,
-                  // easing: Kinetic.Easings.EaseInOut,
-                  easing: Kinetic.Easings.EaseInOut,
-                  duration: 1,
-                  onFinish: animFrame
-                });
-
-                tween.play();
-            }
-
-            rorateBottle();
             
             function animFrame() {
                 /** the bigger the ANYM_CONST the smoother(slower) the bottle's retturn */
@@ -332,8 +299,6 @@ var alcoholSources = generateImagePath(ALCOHOL_CONSTANTS, ''),
 loadImages(alcoholSources, initStage);
 loadImages(nonalcoholSources, initStage, CONSTANTS.NEXT_ROW_OFF_SET * 2);
 
-var myButton = document.getElementById('myButton');
-
 myButton.addEventListener('click', function (ev) {
     selectedDrinks.sort(function (firstIngredient, secondIngredient) {
         var sortedDrinks = firstIngredient.localeCompare(secondIngredient);
@@ -355,8 +320,18 @@ myButton.addEventListener('click', function (ev) {
     if (areEqual) {
         endScreen();
     }
+});
 
-    console.log(areEqual);
+reset.addEventListener('click', function(ev){
+     var startScreen = document.getElementById('start-screen').style.display = 'block',
+        container = document.getElementById('container').style.display = 'none',
+        desiredCocktail = document.getElementById('cocktailName').style.display = 'none',
+        bartenderFace = document.getElementById('bartenderFace').style.display = 'none';
+
+        myButton.style.display = 'none';
+        reset.style.display = 'none';
+
+        selectedDrinks = [];
 });
 
 //END SCREEN
@@ -539,3 +514,4 @@ function generateImagePath(items, prefix) {
 
     return sources;
 }
+}());

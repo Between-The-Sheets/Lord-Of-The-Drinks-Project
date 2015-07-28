@@ -9,19 +9,21 @@
 <body>
 	<div id="container">
 	</div>
-	<div id="start-screen", class="start">
-		<img id="lord" src="images/lordOfTheDrinks.png" width="350" height="394">
-		<img id="niki" src="images/bartenders/niki.jpg" width="284" height="313">
+	<div id="start-screen" class="start">
+		<img id="lord" src="images/lordOfTheDrinks.png" width="284" height="284">
+		<img id="niki" src="images/bartenders/niki.jpg" width="284" height="284">
 		<img id="evlogi" src="images/bartenders/evlogi.jpg" width="284" height="284">
 		<img id="ivo" src="images/bartenders/ivo.jpg" width="284" height="284">
-		<img id="doncho" src="images/bartenders/doncho.jpg" width="279" height="287">
+		<img id="doncho" src="images/bartenders/doncho.jpg" width="279" height="284">
 		<h1>Choose a Bartender to shake it for you</h1>
 	</div>
-	<button id="myButton">Ready!</button>
+    <button id="myButton" class="btn green">Ready!</button>
+	<button id="reset" class="btn red">Again!</button>
 	<audio id="sound" src="" preload="auto"></audio>
 	<div id="cocktailName"></div>
 	<img id="bartenderFace" src="" />
 	<script src="libs/kinetic-v5.1.0.js"></script>
-	<script src="main.js"></script>
+	<script src="bar.js"></script>
+    <script src="main.js"></script>
 </body>
 </html>

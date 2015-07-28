@@ -1,22 +1,27 @@
 * {
     font-family: 'Cardo', serif;
 }
-#container, #myButton, #cocktailName, #bartenderFace {
+#container, .btn, #cocktailName, #bartenderFace {
     display: none;
 }
 h1{
-    font-family: "Ringbearer";
     font-size: 70px;
     text-align: center;
     color: black;
 }
-
+body, div {
+    margin: 0;
+    padding: 0;
+}
 .start{
     background-image: url("images/start-background.jpg");
     width: 1600px;
     height: 800px;
 }
-#myButton {
+img {
+    margin-top: 10px;
+}
+.green {
     -moz-box-shadow:inset 0px 1px 0px 0px #9acc85;
     -webkit-box-shadow:inset 0px 1px 0px 0px #9acc85;
     box-shadow:inset 0px 1px 0px 0px #9acc85;
@@ -34,13 +39,12 @@ h1{
     border:1px solid #3b6e22;
     cursor:pointer;
     color:#ffffff;
-    font-family:Arial;
     font-size:28px;
     font-weight:bold;
     padding:15px 39px;
     text-decoration:none;
 }
-#myButton:hover {
+.green:hover {
     background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #68a54b), color-stop(1, #74ad5a));
     background:-moz-linear-gradient(top, #68a54b 5%, #74ad5a 100%);
     background:-webkit-linear-gradient(top, #68a54b 5%, #74ad5a 100%);
@@ -50,12 +54,32 @@ h1{
     filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#68a54b', endColorstr='#74ad5a',GradientType=0);
     background-color:#68a54b;
 }
-#myButton{
+#myButton {
     top: 600px;
     left: 1275px;
     position: absolute;
 }
-
+#reset {
+    top: 600px;
+    left: 1100px;
+    position: absolute;
+}
+.red {
+    background: #d0451b linear-gradient(to bottom, #d0451b 5%, #bc3315 100%) repeat scroll 0 0;
+    border: 1px solid #942911;
+    border-radius: 8px;
+    box-shadow: 0 1px 0 0 #cf866c inset;
+    color: #ffffff;
+    cursor: pointer;
+    font-size: 28px;
+    font-weight:bold;
+    padding:15px 39px;
+    text-decoration: none;
+    text-shadow: 0 1px 0 #854629;
+}
+.red:hover {
+    background: #bc3315 linear-gradient(to bottom, #bc3315 5%, #d0451b 100%) repeat scroll 0 0;
+}
 #cocktailName {
     top: 8px;
     left: 1111px;
