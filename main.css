@@ -17,6 +17,11 @@ h1{
     text-align: center;
     color: black;
 }
+#lord{
+    position: absolute;
+    margin-top: 22%;
+    left:30%;
+}
 body, div {
     margin: 0;
     padding: 0;
@@ -36,6 +41,11 @@ img {
     -ms-transform:scale(1.15); /* IE 9 */
     -o-transform:scale(1.15); /* Opera */
     transform:scale(1.15);
+}
+
+.bartenderImg{
+    position: relative;
+    left: 15%;
 }
 .green {
     -moz-box-shadow:inset 0px 1px 0px 0px #9acc85;
