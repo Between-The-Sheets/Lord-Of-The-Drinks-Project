@@ -160,7 +160,10 @@
         bottles.forEach(function (bottle) {
             bottle.addEventListener('dragend', function (ev) {
                 var dragDistanceX = bottle.attrs.x,
-                    dragDistanceY = bottle.attrs.y;
+                    dragDistanceY = bottle.attrs.y,
+                    isAtShaker,
+                    shakerLeftCorner = 730,
+                    shakerRightCorner = 880;
 
                 if (SUBSTANCES.indexOf(bottle.id) < 0 &&
                     dragDistanceX >= 650 &&
@@ -212,7 +215,9 @@
                     requestAnimationFrame(animFrame);
                 }
 
-                if ((bar.selectedDrinkIsUnique(selectedDrinks, bottle.id))) {
+                isAtShaker = ev.clientX > shakerLeftCorner && ev.clientX < shakerRightCorner;
+
+                if ((bar.selectedDrinkIsUnique(selectedDrinks, bottle.id)) && isAtShaker) {
                     selectedDrinks.push(bottle.id);
                 }
                 console.log(selectedDrinks);
@@ -247,3 +252,8 @@
         bar.reset();
     });
 } ());
+
+// var cont = document.getElementById('container');
+// cont.addEventListener('click', function(ev) {
+//     console.log(ev.clientX);
+// }, false);
