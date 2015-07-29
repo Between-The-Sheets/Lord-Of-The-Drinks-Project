@@ -6,12 +6,13 @@
 
 *{
     font-family: Ring, serif;
+    font-weight: normal;
 }
 #container, .btn, #cocktailName, #bartenderFace, #endScreen {
     display: none;
 }
 h1{
-    font-size: 70px;
+    font-size: 75px;
     text-align: center;
     color: black;
 }
@@ -92,8 +93,8 @@ img {
     position: absolute;
     border-radius:8px;
     color:#ffffff;
-    font-size:28px;
-    font-weight:bold;
+    font-size:30px;
+    font-weight:normal;
     padding:15px 39px;
     text-decoration:none;
     width: 350px;
@@ -120,6 +121,6 @@ img:hover {
     display: none;
     text-align: center;
     position: relative;
-    font-size:28px;
-    font-weight:bold;
+    font-size:30px;
+    font-weight:normal;
 }
