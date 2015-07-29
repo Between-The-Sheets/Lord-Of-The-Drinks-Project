@@ -14,8 +14,8 @@
         len,
         desiredCocktail = document.getElementById('cocktailName'),
         ingredientField = document.getElementById('cocktailIngredients');
-        desiredCocktail.innerHTML = 'Your desired cocktail: <br/>' + bar.getCocktail();
-        ingredientField.innerHTML = 'Your ingredients so far: <br/>';
+        desiredCocktail.innerHTML = '<span class="cocktail-label">Your desired cocktail: <br/></span>' + bar.getCocktail();
+        ingredientField.innerHTML = '<span class="cocktail-label">Your ingredients so far: <br/></span>';
 
     function selectBartender(ev){
         document.getElementById('start-screen').style.display = 'none';
@@ -164,7 +164,8 @@
                     shakerRightCorner = 880;
 
                 if (substances.indexOf(bottle.id) < 0 &&
-                   isAtShaker) {
+                    dragDistanceX >= 650 &&
+                    dragDistanceY <= 500) {
                     var tween;
                     function rotateBottle() {
                         tween = new Kinetic.Tween({

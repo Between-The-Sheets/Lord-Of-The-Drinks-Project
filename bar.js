@@ -176,15 +176,15 @@ var bar = (function () {
 
             var areEqual = true;
 
-            //if (!selectedDrinks.length) {
-            //    areEqual = false;
-            //}
-            //
-            //for (var i = 0, len = selectedDrinks.length; i < len; i += 1) {
-            //    if (selectedDrinks[i] !== cocktail.ingredients[i]) {
-            //        areEqual = false;
-            //    }
-            //}
+            if (!selectedDrinks.length) {
+                areEqual = false;
+            }
+
+            for (var i = 0, len = selectedDrinks.length; i < len; i += 1) {
+                if (selectedDrinks[i] !== cocktail.ingredients[i]) {
+                    areEqual = false;
+                }
+            }
 
             if (areEqual) {
                 bar.endScreen();
@@ -315,7 +315,7 @@ var bar = (function () {
         
                 // fade out
                 this.alpha -= this.fade;
-            }
+            };
 
             Particle.prototype.render = function (c) {
                 if (!this.exists()) {
@@ -344,39 +344,49 @@ var bar = (function () {
                 c.fill();
 
                 c.restore();
-            }
+            };
 
             Particle.prototype.exists = function () {
                 return this.alpha >= 0.01 && this.size >= 1;
-            }
+            };
 
             function init() {
                 setInterval(loop, 1000 / 30);
-
+                hideBar();
+                addResetButtonToEndScreen();
+                shakeShaker();
                 showCredits();
             }
+
             function showCredits(){
+                document.getElementById('end-canvas-div').style.display = 'block';
+                document.getElementById('endScreen').style.display = 'block';
+            }
 
-                var newParent = document.getElementById('end-canvas-div'),
-                oldParent = document.getElementById('body'),
-                reset = document.getElementById('reset');
-
-                newParent.appendChild(reset);
-
+            function hideBar(){
                 document.getElementById('start-screen').style.display = 'none';
                 document.getElementById('container').style.display = 'none';
                 document.getElementById('cocktailName').style.display = 'none';
                 document.getElementById('cocktailIngredients').style.display = 'none';
                 document.getElementById('bartenderFace').style.display = 'none';
-                document.getElementById('end-canvas-div').style.display = 'block';
-                document.getElementById('endScreen').style.display = 'block';
+            }
 
-                // svg
+            function addResetButtonToEndScreen(){
+                var newParent = document.getElementById('end-canvas-div'),
+                    reset = document.getElementById('reset');
 
-                var svgDom = document.getElementById('svg');
-                svgDom.style.display = 'block';
-                newParent.appendChild(svgDom);
+                newParent.appendChild(reset);
+            }
 
+            function shakeShaker(){
+                var SCREEN_WIDTH = bar.getConstants().STAGE_WIDTH,
+                    SCREEN_HEIGHT = bar.getConstants().STAGE_HEIGHT,
+                    SHAKER_X = SCREEN_WIDTH * 50 / 100,
+                    SHAKER_Y = SCREEN_WIDTH * 25 / 100;
+                var paper = new Raphael(0, 0,SCREEN_WIDTH , SCREEN_HEIGHT);
+                var shaker = paper.image("images/cocktail-shaker-22.png",SHAKER_X,SHAKER_Y,200,300);
+                var anim = Raphael.animation({transform: "r360"}, 2500).repeat(Infinity);
+                shaker.animate(anim);
             }
             
             init();
