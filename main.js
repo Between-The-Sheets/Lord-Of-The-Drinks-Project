@@ -1,5 +1,5 @@
 (function () {
-    var bartenderSelected = document.getElementById('start-screen'),
+    var bartenderSelected = document.getElementsByClassName('bartenderImg'),
         sound = document.getElementById('sound'),
         readyBtn = document.getElementById('ready'),
         reset = document.getElementById('reset'),
@@ -13,9 +13,10 @@
         backgroundLayer = null,
         bartendersSounds = bar.getSounds(),
         bartender,
-        soundIndex = 1;
+        soundIndex = 1,
+        i, len;
 
-    bartenderSelected.addEventListener('click', function (ev) {
+        function selectBartender(ev){
         document.getElementById('start-screen').style.display = 'none';
         document.getElementById('container').style.display = 'block';
         document.getElementById('cocktailName').style.display = 'block';
@@ -24,7 +25,11 @@
 
         readyBtn.style.display = 'block';
         reset.style.display = 'block';
-    });
+    };
+    
+    for (i = 0, len = bartenderSelected.length; i < len; i++) {
+        bartenderSelected[i].addEventListener('click', selectBartender);
+    }
 
     stage = new Kinetic.Stage({
         container: 'container',
