@@ -1,5 +1,6 @@
 (function () {
     var bartenderSelected = document.getElementsByClassName('bartenderImg'),
+        music = document.getElementById('music'),
         readyBtn = document.getElementById('ready'),
         reset = document.getElementById('reset'),
         selectedDrinks = [],
@@ -16,6 +17,8 @@
         ingredientField = document.getElementById('cocktailIngredients');
         desiredCocktail.innerHTML = '<span class="cocktail-label">Your desired cocktail: <br/></span>' + bar.getCocktail();
         ingredientField.innerHTML = '<span class="cocktail-label">Your ingredients so far: <br/></span>';
+
+    music.volume = 0.5;
 
     function selectBartender(ev){
         document.getElementById('start-screen').style.display = 'none';
@@ -127,19 +130,17 @@
 
         stage.add(layer);
         stage.draw();
-        function musicFadeIn(music,currentSoundLen){ //TODO does not work because currentSoundLen returns NAN
+
+        function musicFadeIn(music,currentSoundLen){ //TODO does not work without magic because currentSound.duration returns NAN
             return setTimeout(function () {
-                music.volume = 1;
-               // music.play();
+                music.volume = 0.5;
             },currentSoundLen);
         }
 
         bottles.forEach(function (bottle) {
             bottle.addEventListener('dragstart', function (ev) {
                 var soundOfBartender = new Audio(),
-                    music = document.getElementById('music'),
-                    currentSound,
-                    currentSoundLen;
+                    currentSound;
 
                 if (soundIndex >= bartendersSounds[bar.getBartender()].length) {
                     soundIndex = 0;
@@ -149,7 +150,7 @@
                 soundOfBartender.src = currentSound;
                 music.volume = 0.15;
                 soundOfBartender.play();
-                musicFadeIn(music,2500);
+                musicFadeIn(music,2800);
 
                 soundIndex++;
             });

@@ -105,14 +105,12 @@ var bar = (function () {
                     'sounds/Doncho/Doncho- Kvo staa siga - nishtu.wav'
                 ],
                 'evlogi': [
-                    'sounds/Evlogi/Evlogi - Moga da si pravya vsyakakvi neshta kvot mi hrumne na akyla.wav',
-                    'sounds/Evlogi/Evlogi - She vidim kak shse spravim.wav',
-                    'sounds/Evlogi/Evlogi - Izglezhda grozno.wav',
-                    'sounds/Evlogi/Evlogi - Kvot mi hrumne na akyla.wav',
+                    'sounds/Evlogi/Evlogi - Da bravo na vas.wav',
+                    'sounds/Evlogi/Evlogi - Principno ne bih go pravil.wav',
+                    'sounds/Evlogi/Evlogi - Tui kato mezhdu dvete kucheta kyde e mishkata.wav',
                     'sounds/Evlogi/Evlogi - Moga da si pravq kvot si iskam.wav',
-                    'sounds/Evlogi/Evlogi - Ne se plashete.wav',
-                    'sounds/Evlogi/Evlogi - Oshte po-grozno ot predi.wav',
-                    'sounds/Evlogi/Evlogi - Uha bravo be.wav'
+                    'sounds/Evlogi/Evlogi - Tochno po recepta na doktora.wav'
+
                 ],
                 'ivo': [
                     'sounds/Ivo/Ivo - Kyde sa aplodismentite.wav',
