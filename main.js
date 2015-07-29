@@ -255,8 +255,3 @@
         bar.reset();
     });
 } ());
-
-// var cont = document.getElementById('container');
-// cont.addEventListener('click', function(ev) {
-//     console.log(ev.clientX);
-// }, false);
