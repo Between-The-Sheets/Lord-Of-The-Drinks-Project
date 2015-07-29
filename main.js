@@ -13,7 +13,7 @@
         backgroundLayer = null,
         bartendersSounds = bar.getSounds(),
         bartender,
-        soundIndex = 0;
+        soundIndex = 1;
 
     bartenderSelected.addEventListener('click', function (ev) {
         document.getElementById('start-screen').style.display = 'none';
@@ -134,16 +134,14 @@
                     currentSound,
                     bartender = bar.getBartender();
 
-                if (soundIndex < bartendersSounds[bartender].length) {
-                    ++soundIndex;
-
-                } else {
+                if (soundIndex >= bartendersSounds[bartender].length) {
                     soundIndex = 0;
                 }
 
                 currentSound = bartendersSounds[bartender][soundIndex];
                 soundOfBartender.src = currentSound;
                 soundOfBartender.play();
+                soundIndex++;
             });
         });
 
