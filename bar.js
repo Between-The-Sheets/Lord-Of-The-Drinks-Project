@@ -12,7 +12,7 @@ var bar = (function () {
                 },
                 {
                     name: 'Mojito',
-                    ingredients: ['lime', 'mint', 'soda', 'white-run']
+                    ingredients: ['lime', 'mint', 'soda', 'white-rum']
                 },
                 {
                     name: 'Pina Colada',
