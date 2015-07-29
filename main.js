@@ -164,8 +164,7 @@
                     shakerRightCorner = 880;
 
                 if (substances.indexOf(bottle.id) < 0 &&
-                    dragDistanceX >= 650 &&
-                    dragDistanceY <= 500) {
+                   isAtShaker) {
                     var tween;
                     function rotateBottle() {
                         tween = new Kinetic.Tween({
