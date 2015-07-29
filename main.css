@@ -1,5 +1,11 @@
-* {
-    font-family: 'Ringbearer', serif;
+
+@font-face{
+    font-family: Ring;
+    src: url('ring.ttf');
+}
+
+*{
+    font-family: Ring, serif;
 }
 #container, .btn, #cocktailName, #bartenderFace, #endScreen {
     display: none;
