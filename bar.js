@@ -355,13 +355,19 @@ var bar = (function () {
                 showCredits();
             }
             function showCredits(){
+
+                var newParent = document.getElementById('end-canvas-div'),
+                oldParent = document.getElementById('body'),
+                reset = document.getElementById('reset');
+
+                newParent.appendChild(reset);
+
                 document.getElementById('start-screen').style.display = 'none';
                 document.getElementById('container').style.display = 'none';
                 document.getElementById('cocktailName').style.display = 'none';
                 document.getElementById('bartenderFace').style.display = 'none';
                 document.getElementById('end-canvas-div').style.display = 'block';
                 document.getElementById('endScreen').style.display = 'block';
-
             }
             
             init();
