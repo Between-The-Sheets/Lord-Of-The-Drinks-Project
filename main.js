@@ -14,9 +14,12 @@
         bartendersSounds = bar.getSounds(),
         bartender,
         soundIndex = 1,
-        i, len;
+        i,
+        len,
+        desiredCocktail = document.getElementById('cocktailName');
+        desiredCocktail.innerHTML = 'Your desired cocktail: ' + bar.getCoctail();
 
-        function selectBartender(ev){
+    function selectBartender(ev){
         document.getElementById('start-screen').style.display = 'none';
         document.getElementById('container').style.display = 'block';
         document.getElementById('cocktailName').style.display = 'block';
@@ -44,8 +47,7 @@
         var images = {},
             loadedImages = 0,
             numImages = 0,
-            src,
-            desiredCocktail;
+            src;
 
         numImages = Object.keys(sources).length;
 
@@ -59,9 +61,6 @@
 
             images[src].src = sources[src];
         }
-
-        desiredCocktail = document.getElementById('cocktailName');
-        desiredCocktail.innerHTML = 'Your desired cocktail: ' + bar.getCoctail();
     }
 
     function initStage(images, rowLength, secondRow) {
@@ -74,10 +73,8 @@
             imageWidth = CONSTANTS.BOTTLE_IMAGE_WIDTH,
             imageHeight = CONSTANTS.BOTTLE_IMAGE_HEIGHT,
             background,
-            img,
             nextRowConst = 0;
-    
-    
+
         //draw background
         var imageObj = new Image();
         imageObj.onload = function () {
@@ -97,7 +94,6 @@
 
         };
         imageObj.src = 'images/background.png';
-    
 
         //playing with y offset and image widht/height
         if (secondRow) {
@@ -132,11 +128,19 @@
 
         stage.add(layer);
         stage.draw();
+        function musicFadeIn(music,currentSoundLen){ //TODO does not work because currentSoundLen returns NAN
+            return setTimeout(function () {
+                music.volume = 1;
+               // music.play();
+            },currentSoundLen);
+        }
 
-        bottles.forEach(function (bottle) {  // TODO: fix it completely method works till it gets to the end of soundfiles, then skips one and starts working again odd behaviour
+        bottles.forEach(function (bottle) {
             bottle.addEventListener('dragstart', function (ev) {
                 var soundOfBartender = new Audio(),
+                    music = document.getElementById('music'),
                     currentSound,
+                    currentSoundLen,
                     bartender = bar.getBartender();
 
                 if (soundIndex >= bartendersSounds[bartender].length) {
@@ -145,7 +149,10 @@
 
                 currentSound = bartendersSounds[bartender][soundIndex];
                 soundOfBartender.src = currentSound;
+                music.volume = 0.15;
                 soundOfBartender.play();
+                musicFadeIn(music,2500);
+
                 soundIndex++;
             });
         });
@@ -154,7 +161,7 @@
             bottle.addEventListener('dragend', function (ev) {
                 var dragDistanceX = bottle.attrs.x,
                     dragDistanceY = bottle.attrs.y;
-         
+
                 if (SUBSTANCES.indexOf(bottle.id) < 0 &&
                     dragDistanceX >= 650 &&
                     dragDistanceY <= 500) {
@@ -211,7 +218,7 @@
                 console.log(selectedDrinks);
                 console.log(bottle.id);
             })
-        })
+        });
 
         layer.on('mouseover', function (evt) {
             var shape = evt.shape;
