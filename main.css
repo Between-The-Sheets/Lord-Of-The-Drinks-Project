@@ -9,7 +9,7 @@
     font-family: Ring, serif;
     font-weight: normal;
 }
-#container, .btn, #cocktailName, #bartenderFace, #endScreen {
+#container, .btn, #cocktailName, #bartenderFace, #endScreen, #cocktailIngredients {
     display: none;
 }
 h1{
@@ -132,4 +132,17 @@ img:hover {
     position: relative;
     font-size:30px;
     font-weight:normal;
+}
+
+#cocktailIngredients {
+    top: 150px;
+    left: 1111px;
+    position: absolute;
+    border-radius:8px;
+    color:#ffffff;
+    font-size:30px;
+    font-weight:normal;
+    padding:15px 39px;
+    text-decoration:none;
+    width: 350px;
 }

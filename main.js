@@ -16,14 +16,17 @@
         soundIndex = 1,
         i,
         len,
-        desiredCocktail = document.getElementById('cocktailName');
-        desiredCocktail.innerHTML = 'Your desired cocktail: ' + bar.getCocktail();
+        desiredCocktail = document.getElementById('cocktailName'),
+        ingredientField = document.getElementById('cocktailIngredients');
+        desiredCocktail.innerHTML = 'Your desired cocktail: <br/>' + bar.getCocktail();
+        ingredientField.innerHTML = 'Your ingredients so far: <br/>';        
 
     function selectBartender(ev){
         document.getElementById('start-screen').style.display = 'none';
         document.getElementById('container').style.display = 'block';
         document.getElementById('cocktailName').style.display = 'block';
         document.getElementById('bartenderFace').style.display = 'block';
+        document.getElementById('cocktailIngredients').style.display = 'block';
         bar.showBartender(ev.target);
 
         readyBtn.style.display = 'block';
@@ -219,9 +222,9 @@
 
                 if ((bar.selectedDrinkIsUnique(selectedDrinks, bottle.id)) && isAtShaker) {
                     selectedDrinks.push(bottle.id);
+
+                    ingredientField.innerHTML += bottle.id + '<br/>';
                 }
-                console.log(selectedDrinks);
-                console.log(bottle.id);
             })
         });
 
