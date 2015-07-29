@@ -1,25 +1,21 @@
 (function () {
     var bartenderSelected = document.getElementsByClassName('bartenderImg'),
-        sound = document.getElementById('sound'),
         readyBtn = document.getElementById('ready'),
         reset = document.getElementById('reset'),
         selectedDrinks = [],
-        ALCOHOL_CONSTANTS = bar.getAlcohol(),
-        NONALCOHOL_CONSTANTS = bar.getNonAlcohol(),
-        SUBSTANCES = bar.getSubstances(),
+        substances = bar.getSubstances(),
         CONSTANTS = bar.getConstants(),
         stage = null,
         layer = null,
         backgroundLayer = null,
         bartendersSounds = bar.getSounds(),
-        bartender,
         soundIndex = 1,
         i,
         len,
         desiredCocktail = document.getElementById('cocktailName'),
         ingredientField = document.getElementById('cocktailIngredients');
         desiredCocktail.innerHTML = 'Your desired cocktail: <br/>' + bar.getCocktail();
-        ingredientField.innerHTML = 'Your ingredients so far: <br/>';        
+        ingredientField.innerHTML = 'Your ingredients so far: <br/>';
 
     function selectBartender(ev){
         document.getElementById('start-screen').style.display = 'none';
@@ -119,10 +115,10 @@
 
             bottle.startX = bottle.attrs.x;
             bottle.startY = bottle.attrs.y;
-            bottle.id = ALCOHOL_CONSTANTS[bottleID];
+            bottle.id = bar.getAlcohol()[bottleID];
 
             if (secondRow) {
-                bottle.id = NONALCOHOL_CONSTANTS[bottleID];
+                bottle.id = bar.getNonAlcohol()[bottleID];
             }
             bottles.push(bottle);
 
@@ -143,14 +139,13 @@
                 var soundOfBartender = new Audio(),
                     music = document.getElementById('music'),
                     currentSound,
-                    currentSoundLen,
-                    bartender = bar.getBartender();
+                    currentSoundLen;
 
-                if (soundIndex >= bartendersSounds[bartender].length) {
+                if (soundIndex >= bartendersSounds[bar.getBartender()].length) {
                     soundIndex = 0;
                 }
 
-                currentSound = bartendersSounds[bartender][soundIndex];
+                currentSound = bartendersSounds[bar.getBartender()][soundIndex];
                 soundOfBartender.src = currentSound;
                 music.volume = 0.15;
                 soundOfBartender.play();
@@ -168,7 +163,7 @@
                     shakerLeftCorner = 730,
                     shakerRightCorner = 880;
 
-                if (SUBSTANCES.indexOf(bottle.id) < 0 &&
+                if (substances.indexOf(bottle.id) < 0 &&
                     dragDistanceX >= 650 &&
                     dragDistanceY <= 500) {
                     var tween;
@@ -241,8 +236,8 @@
         });
     }
 
-    var alcoholSources = bar.generateImagePath(ALCOHOL_CONSTANTS, ''),
-        nonalcoholSources = bar.generateImagePath(NONALCOHOL_CONSTANTS, 'non-');
+    var alcoholSources = bar.generateImagePath(bar.getAlcohol(), ''),
+        nonalcoholSources = bar.generateImagePath(bar.getNonAlcohol(), 'non-');
 
     loadImages(alcoholSources, initStage);
     loadImages(nonalcoholSources, initStage, CONSTANTS.NEXT_ROW_OFF_SET * 2);
