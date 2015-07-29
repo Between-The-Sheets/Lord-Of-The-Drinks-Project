@@ -176,15 +176,15 @@ var bar = (function () {
 
             var areEqual = true;
 
-            if (!selectedDrinks.length) {
-                areEqual = false;
-            }
-
-            for (var i = 0, len = selectedDrinks.length; i < len; i += 1) {
-                if (selectedDrinks[i] !== cocktail.ingredients[i]) {
-                    areEqual = false;
-                }
-            }
+            //if (!selectedDrinks.length) {
+            //    areEqual = false;
+            //}
+            //
+            //for (var i = 0, len = selectedDrinks.length; i < len; i += 1) {
+            //    if (selectedDrinks[i] !== cocktail.ingredients[i]) {
+            //        areEqual = false;
+            //    }
+            //}
 
             if (areEqual) {
                 bar.endScreen();
@@ -352,6 +352,7 @@ var bar = (function () {
 
             function init() {
                 setInterval(loop, 1000 / 30);
+
                 showCredits();
             }
             function showCredits(){
@@ -369,6 +370,13 @@ var bar = (function () {
                 document.getElementById('bartenderFace').style.display = 'none';
                 document.getElementById('end-canvas-div').style.display = 'block';
                 document.getElementById('endScreen').style.display = 'block';
+
+                // svg
+
+                var svgDom = document.getElementById('svg');
+                svgDom.style.display = 'block';
+                newParent.appendChild(svgDom);
+
             }
             
             init();
