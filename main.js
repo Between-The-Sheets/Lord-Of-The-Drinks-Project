@@ -17,7 +17,7 @@
         i,
         len,
         desiredCocktail = document.getElementById('cocktailName');
-        desiredCocktail.innerHTML = 'Your desired cocktail: ' + bar.getCoctail();
+        desiredCocktail.innerHTML = 'Your desired cocktail: ' + bar.getCocktail();
 
     function selectBartender(ev){
         document.getElementById('start-screen').style.display = 'none';
