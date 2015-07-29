@@ -1,7 +1,8 @@
 
 @font-face{
     font-family: Ring;
-    src: url('ring.ttf');
+    src: url('ring.eot'),
+    url('ring.ttf');
 }
 
 *{
@@ -27,6 +28,14 @@ body, div {
 }
 img {
     margin-top: 10px;
+}
+
+.bartenderImg:hover {
+    -webkit-transform:scale(1.15); /* Safari and Chrome */
+    -moz-transform:scale(1.15); /* Firefox */
+    -ms-transform:scale(1.15); /* IE 9 */
+    -o-transform:scale(1.15); /* Opera */
+    transform:scale(1.15);
 }
 .green {
     -moz-box-shadow:inset 0px 1px 0px 0px #9acc85;

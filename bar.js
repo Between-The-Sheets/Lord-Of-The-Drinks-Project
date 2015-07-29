@@ -2,7 +2,7 @@ var bar = (function () {
     var bartender,
         index = Math.random() * 10 | 0,
         getRecipes,
-        coctail;
+        cocktail;
 
         getRecipes = function(){
             return [
@@ -12,7 +12,7 @@ var bar = (function () {
                 },
                 {
                     name: 'Mojito',
-                    ingredients: ['lime', 'mint', 'soda', 'white-run']
+                    ingredients: ['lime', 'mint', 'soda', 'white-rum']
                 },
                 {
                     name: 'Pina Colada',
@@ -48,7 +48,7 @@ var bar = (function () {
                 }
             ];
         }
-        coctail = getRecipes()[index];
+        cocktail = getRecipes()[index];
         
     return {
         getAlcohol: function(){
@@ -165,8 +165,8 @@ var bar = (function () {
 
             return true;
         },
-        getCoctail: function(){
-            return coctail.name;
+        getCocktail: function(){
+            return cocktail.name;
         },
         ready: function(selectedDrinks){
             selectedDrinks.sort(function (firstIngredient, secondIngredient) {
@@ -181,7 +181,7 @@ var bar = (function () {
             }
 
             for (var i = 0, len = selectedDrinks.length; i < len; i += 1) {
-                if (selectedDrinks[i] !== coctail.ingredients[i]) {
+                if (selectedDrinks[i] !== cocktail.ingredients[i]) {
                     areEqual = false;
                 }
             }
@@ -194,8 +194,8 @@ var bar = (function () {
             window.location.reload();
         },
         endScreen: function(){
-            var SCREEN_WIDTH = this.getConstants().STAGE_WIDTH;
-                SCREEN_HEIGHT = this.getConstants().STAGE_HEIGHT;
+            var SCREEN_WIDTH = this.getConstants().STAGE_WIDTH,
+                SCREEN_HEIGHT = this.getConstants().STAGE_HEIGHT,
                 mousePos = {
                     x: 400,
                     y: 300
