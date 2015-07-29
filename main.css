@@ -54,7 +54,7 @@ img {
     filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#68a54b', endColorstr='#74ad5a',GradientType=0);
     background-color:#68a54b;
 }
-#myButton {
+#ready {
     top: 600px;
     left: 1275px;
     position: absolute;
