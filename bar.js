@@ -365,6 +365,7 @@ var bar = (function () {
                 document.getElementById('start-screen').style.display = 'none';
                 document.getElementById('container').style.display = 'none';
                 document.getElementById('cocktailName').style.display = 'none';
+                document.getElementById('cocktailIngredients').style.display = 'none';
                 document.getElementById('bartenderFace').style.display = 'none';
                 document.getElementById('end-canvas-div').style.display = 'block';
                 document.getElementById('endScreen').style.display = 'block';

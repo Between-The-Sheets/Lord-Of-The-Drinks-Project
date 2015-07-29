@@ -16,14 +16,17 @@
         soundIndex = 1,
         i,
         len,
-        desiredCocktail = document.getElementById('cocktailName');
-        desiredCocktail.innerHTML = 'Your desired cocktail: ' + bar.getCocktail();
+        desiredCocktail = document.getElementById('cocktailName'),
+        ingredientField = document.getElementById('cocktailIngredients');
+        desiredCocktail.innerHTML = 'Your desired cocktail: <br/>' + bar.getCocktail();
+        ingredientField.innerHTML = 'Your ingredients so far: <br/>';        
 
     function selectBartender(ev){
         document.getElementById('start-screen').style.display = 'none';
         document.getElementById('container').style.display = 'block';
         document.getElementById('cocktailName').style.display = 'block';
         document.getElementById('bartenderFace').style.display = 'block';
+        document.getElementById('cocktailIngredients').style.display = 'block';
         bar.showBartender(ev.target);
 
         readyBtn.style.display = 'block';
@@ -160,7 +163,10 @@
         bottles.forEach(function (bottle) {
             bottle.addEventListener('dragend', function (ev) {
                 var dragDistanceX = bottle.attrs.x,
-                    dragDistanceY = bottle.attrs.y;
+                    dragDistanceY = bottle.attrs.y,
+                    isAtShaker,
+                    shakerLeftCorner = 730,
+                    shakerRightCorner = 880;
 
                 if (SUBSTANCES.indexOf(bottle.id) < 0 &&
                     dragDistanceX >= 650 &&
@@ -212,11 +218,13 @@
                     requestAnimationFrame(animFrame);
                 }
 
-                if ((bar.selectedDrinkIsUnique(selectedDrinks, bottle.id))) {
+                isAtShaker = ev.clientX > shakerLeftCorner && ev.clientX < shakerRightCorner;
+
+                if ((bar.selectedDrinkIsUnique(selectedDrinks, bottle.id)) && isAtShaker) {
                     selectedDrinks.push(bottle.id);
+
+                    ingredientField.innerHTML += bottle.id + '<br/>';
                 }
-                console.log(selectedDrinks);
-                console.log(bottle.id);
             })
         });
 
@@ -247,3 +255,8 @@
         bar.reset();
     });
 } ());
+
+// var cont = document.getElementById('container');
+// cont.addEventListener('click', function(ev) {
+//     console.log(ev.clientX);
+// }, false);
