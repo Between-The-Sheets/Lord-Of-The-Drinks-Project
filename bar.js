@@ -194,8 +194,8 @@ var bar = (function () {
             window.location.reload();
         },
         endScreen: function(){
-            var SCREEN_WIDTH = this.getConstants().STAGE_WIDTH;
-                SCREEN_HEIGHT = this.getConstants().STAGE_HEIGHT;
+            var SCREEN_WIDTH = this.getConstants().STAGE_WIDTH,
+                SCREEN_HEIGHT = this.getConstants().STAGE_HEIGHT,
                 mousePos = {
                     x: 400,
                     y: 300
