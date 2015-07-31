@@ -185,6 +185,7 @@ var bar = (function () {
             return cocktail.name;
         },
         ready: function(selectedDrinks){
+            reset.style.display = 'none';
             selectedDrinks.sort(function (firstIngredient, secondIngredient) {
             var sortedDrinks = firstIngredient.localeCompare(secondIngredient);
                 return sortedDrinks;
