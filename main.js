@@ -205,7 +205,7 @@
 
                     ingredientField.innerHTML += bottle.id + '<br/>';
                 }
-            })
+            });
         });
 
         layer.on('mouseover', function (evt) {

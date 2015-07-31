@@ -53,7 +53,7 @@ var bar = (function () {
                     ingredients: ['tomato-juice', 'vodka']
                 }
             ];
-        }
+        };
         cocktail = getRecipes()[index];
         
     return {
@@ -101,7 +101,7 @@ var bar = (function () {
             return [
                 'lime',
                 'mint'
-            ]
+            ];
         },
         getRecipes: getRecipes(),
         getSounds: function(){
@@ -147,7 +147,7 @@ var bar = (function () {
                 BOTTLE_IMAGE_HEIGHT: 130,
                 BOTTLE_IMAGE_WIDTH: 130,
                 NEXT_ROW_OFF_SET: 170
-            }
+            };
         },
         generateImagePath: function(items, prefix){
             var sources = {};
@@ -185,7 +185,6 @@ var bar = (function () {
             return cocktail.name;
         },
         ready: function(selectedDrinks){
-            reset.style.display = 'none';
             selectedDrinks.sort(function (firstIngredient, secondIngredient) {
             var sortedDrinks = firstIngredient.localeCompare(secondIngredient);
                 return sortedDrinks;
@@ -424,5 +423,5 @@ var bar = (function () {
             }
             init();
         }
-    }
+    };
 }());
