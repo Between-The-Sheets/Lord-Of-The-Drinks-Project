@@ -7,7 +7,7 @@
         stage = null,
         layer = new Kinetic.Layer(),
         backgroundLayer = new Kinetic.Layer(),
-        bartendersSounds = bar.getSounds(),
+        bartendersSounds = sounds.getSounds(),
         soundIndex = 1,
         i,
         len,
