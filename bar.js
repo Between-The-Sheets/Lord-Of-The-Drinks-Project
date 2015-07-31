@@ -186,31 +186,59 @@ var bar = (function () {
 
             if (areEqual) {
                 bar.endScreen();
+                bar.successShake();
             }
+            else{
+                bar.endScreen();
+                bar.wrongShake();
+            }
+
         },
         reset: function(){
             window.location.reload();
+        },
+        successShake: function(){
+            var SCREEN_WIDTH = bar.getConstants().STAGE_WIDTH,
+                SCREEN_HEIGHT = bar.getConstants().STAGE_HEIGHT,
+                SHAKER_X = SCREEN_WIDTH * 10 / 100,
+                SHAKER_Y = SCREEN_WIDTH * 15 / 100;
+            var paper = new Raphael(0, 0,SCREEN_WIDTH , SCREEN_HEIGHT);
+            var shaker = paper.image("images/cocktail-shaker-22.png",SHAKER_X,SHAKER_Y,200,300);
+            var anim = Raphael.animation({transform: "r0T 0,-100"}, 1000).repeat(Infinity);
+            shaker.animate(anim);
+        },
+        wrongShake:function(){
+            var SCREEN_WIDTH = bar.getConstants().STAGE_WIDTH,
+                SCREEN_HEIGHT = bar.getConstants().STAGE_HEIGHT,
+                SHAKER_X = SCREEN_WIDTH * 10 / 100,
+                SHAKER_Y = SCREEN_WIDTH * 15 / 100;
+            var paper = new Raphael(0, 0,SCREEN_WIDTH , SCREEN_HEIGHT);
+            var shaker = paper.image("images/cocktail-shaker-22.png",SHAKER_X,SHAKER_Y,200,300);
+            var anim = Raphael.animation({transform: "r90"}, 1000).repeat(1);
+            shaker.animate(anim);
         },
         endScreen: function(){
             var SCREEN_WIDTH = this.getConstants().STAGE_WIDTH,
                 SCREEN_HEIGHT = this.getConstants().STAGE_HEIGHT,
                 mousePos = {
-                    x: 400,
-                    y: 300
+                    x: 250,
+                    y: 60
                 };
 
                 // display canvas
                 document.getElementById('canvas').style.display = 'block',
                 context = canvas.getContext('2d'),
                 particles = [],
+                x = 100,
+                y = 35,
                 MAX_PARTICLES = 300;
 
             document.addEventListener("mousemove", function (e) {
-                e.preventDefault();
+/*                e.preventDefault();
                 mousePos = {
                     x: e.clientX,
                     y: e.clientY
-                };
+                };*/
             });
 
             function loop() {
@@ -352,7 +380,7 @@ var bar = (function () {
                 setInterval(loop, 1000 / 30);
                 hideBar();
                 addResetButtonToEndScreen();
-                shakeShaker();
+/*                shakeShaker();*/
                 showCredits();
             }
 
@@ -375,18 +403,6 @@ var bar = (function () {
 
                 newParent.appendChild(reset);
             }
-
-            function shakeShaker(){
-                var SCREEN_WIDTH = bar.getConstants().STAGE_WIDTH,
-                    SCREEN_HEIGHT = bar.getConstants().STAGE_HEIGHT,
-                    SHAKER_X = SCREEN_WIDTH * 50 / 100,
-                    SHAKER_Y = SCREEN_WIDTH * 25 / 100;
-                var paper = new Raphael(0, 0,SCREEN_WIDTH , SCREEN_HEIGHT);
-                var shaker = paper.image("images/cocktail-shaker-22.png",SHAKER_X,SHAKER_Y,200,300);
-                var anim = Raphael.animation({transform: "r360"}, 2500).repeat(Infinity);
-                shaker.animate(anim);
-            }
-            
             init();
         }
     }
