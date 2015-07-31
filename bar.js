@@ -224,6 +224,9 @@ var bar = (function () {
             var shaker = paper.image("images/cocktail-shaker-22.png",SHAKER_X,SHAKER_Y,200,300);
             var anim = Raphael.animation({transform: "r0T 0,-100"}, 1000).repeat(Infinity);
             shaker.animate(anim);
+            var t = paper.text(250, 550, "");
+            t.attr('text',"Perfect Cocktail!");
+            t.attr({fill: '#fff', 'font-size': 25})
         },
         wrongShake:function(){
             var SCREEN_WIDTH = bar.getConstants().STAGE_WIDTH,
@@ -234,6 +237,10 @@ var bar = (function () {
             var shaker = paper.image("images/cocktail-shaker-22.png",SHAKER_X,SHAKER_Y,200,300);
             var anim = Raphael.animation({transform: "r90"}, 1000).repeat(1);
             shaker.animate(anim);
+            var t = paper.text(250, 550, "");
+            t.attr('text',"Cocktail failed! \n Hangover possible!");
+            t.attr({fill: '#fff', 'font-size': 25})
+
         },
         endScreen: function(){
             var SCREEN_WIDTH = this.getConstants().STAGE_WIDTH,
