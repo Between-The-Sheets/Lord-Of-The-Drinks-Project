@@ -5,8 +5,8 @@
         substances = bar.getSubstances(),
         CONSTANTS = bar.getConstants(),
         stage = null,
-        layer = null,
-        backgroundLayer = null,
+        backgroundLayer = new Kinetic.Layer(),
+        layer = new Kinetic.Layer(),
         bartendersSounds = bar.getSounds(),
         soundIndex = 1,
         i,
@@ -30,8 +30,6 @@
         height: CONSTANTS.STAGE_HEIGHT
     });
 
-    backgroundLayer = new Kinetic.Layer();
-    layer = new Kinetic.Layer();
     //Images must be in dom to set it in kinetic object
     function loadImages(sources, callback, secondRow) {
         var images = {},
