@@ -2,7 +2,13 @@ var bar = (function () {
     var bartender,
         index = Math.random() * 10 | 0,
         getRecipes,
-        cocktail;
+        cocktail,
+        readyBtn = document.getElementById('ready'),
+        reset = document.getElementById('reset');
+
+        reset.addEventListener('click', function (ev) {
+            bar.reset();
+        });
 
         getRecipes = function(){
             return [
@@ -51,6 +57,18 @@ var bar = (function () {
         cocktail = getRecipes()[index];
         
     return {
+        readyBtn: readyBtn,
+        selectBartender : function(ev){
+            document.getElementById('start-screen').style.display = 'none';
+            document.getElementById('container').style.display = 'block';
+            document.getElementById('cocktailName').style.display = 'block';
+            document.getElementById('bartenderFace').style.display = 'block';
+            document.getElementById('cocktailIngredients').style.display = 'block';
+            bar.showBartender(ev.target);
+
+            bar.readyBtn.style.display = 'block';
+            reset.style.display = 'block';
+        },
         getAlcohol: function(){
             return [
                 'vodka',

@@ -1,8 +1,8 @@
 
 @font-face{
     font-family: Ring;
-    src: url('ring.eot'),
-    url('ring.ttf');
+    src: url('font/ring.eot'),
+    url('font/ring.ttf');
 }
 
 *{

@@ -1,14 +1,12 @@
 (function () {
     var bartenderSelected = document.getElementsByClassName('bartenderImg'),
         music = document.getElementById('music'),
-        readyBtn = document.getElementById('ready'),
-        reset = document.getElementById('reset'),
         selectedDrinks = [],
         substances = bar.getSubstances(),
         CONSTANTS = bar.getConstants(),
         stage = null,
-        layer = null,
-        backgroundLayer = null,
+        layer = new Kinetic.Layer(),
+        backgroundLayer = new Kinetic.Layer(),
         bartendersSounds = bar.getSounds(),
         soundIndex = 1,
         i,
@@ -20,20 +18,8 @@
 
     music.volume = 0.5;
 
-    function selectBartender(ev){
-        document.getElementById('start-screen').style.display = 'none';
-        document.getElementById('container').style.display = 'block';
-        document.getElementById('cocktailName').style.display = 'block';
-        document.getElementById('bartenderFace').style.display = 'block';
-        document.getElementById('cocktailIngredients').style.display = 'block';
-        bar.showBartender(ev.target);
-
-        readyBtn.style.display = 'block';
-        reset.style.display = 'block';
-    };
-    
     for (i = 0, len = bartenderSelected.length; i < len; i++) {
-        bartenderSelected[i].addEventListener('click', selectBartender);
+        bartenderSelected[i].addEventListener('click', bar.selectBartender);
     }
 
     stage = new Kinetic.Stage({
@@ -42,8 +28,6 @@
         height: CONSTANTS.STAGE_HEIGHT
     });
 
-    backgroundLayer = new Kinetic.Layer();
-    layer = new Kinetic.Layer();
     //Images must be in dom to set it in kinetic object
     function loadImages(sources, callback, secondRow) {
         var images = {},
@@ -93,8 +77,8 @@
             stage.add(backgroundLayer);
             stage.add(layer);
             stage.draw();
-
         };
+
         imageObj.src = 'images/background.png';
 
         //playing with y offset and image widht/height
@@ -243,11 +227,7 @@
     loadImages(alcoholSources, initStage);
     loadImages(nonalcoholSources, initStage, CONSTANTS.NEXT_ROW_OFF_SET * 2);
 
-    readyBtn.addEventListener('click', function (ev) {
+    bar.readyBtn.addEventListener('click', function (ev) {
         bar.ready(selectedDrinks);
-    });
-
-    reset.addEventListener('click', function (ev) {
-        bar.reset();
     });
 } ());
