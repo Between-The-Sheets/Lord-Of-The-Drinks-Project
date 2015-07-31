@@ -5,8 +5,8 @@
         substances = bar.getSubstances(),
         CONSTANTS = bar.getConstants(),
         stage = null,
-        backgroundLayer = new Kinetic.Layer(),
         layer = new Kinetic.Layer(),
+        backgroundLayer = new Kinetic.Layer(),
         bartendersSounds = bar.getSounds(),
         soundIndex = 1,
         i,
@@ -18,8 +18,6 @@
 
     music.volume = 0.5;
 
-    
-    
     for (i = 0, len = bartenderSelected.length; i < len; i++) {
         bartenderSelected[i].addEventListener('click', bar.selectBartender);
     }
@@ -79,8 +77,8 @@
             stage.add(backgroundLayer);
             stage.add(layer);
             stage.draw();
-
         };
+
         imageObj.src = 'images/background.png';
 
         //playing with y offset and image widht/height
