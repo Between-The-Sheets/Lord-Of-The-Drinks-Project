@@ -25,12 +25,12 @@ var bar = (function () {
                     ingredients: ['coconut-liquor', 'pineapple-juice', 'white-rum']
                 },
                 {
-                    name: 'Cosmopolitan',
-                    ingredients: ['cointreau', 'lime', 'vodka']
+                    name: 'Between the Sheets',
+                    ingredients: ['cointreau', 'dark-rum', 'grenadine']
                 },
                 {
                     name: 'Tequila Sunrise',
-                    ingredients: ['grenadine', 'orange juice', 'tequila']
+                    ingredients: ['grenadine', 'orange-juice', 'tequila']
                 },
                 {
                     name: 'Daiquiri',
