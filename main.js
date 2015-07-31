@@ -1,7 +1,6 @@
 (function () {
     var bartenderSelected = document.getElementsByClassName('bartenderImg'),
         music = document.getElementById('music'),
-        reset = document.getElementById('reset'),
         selectedDrinks = [],
         substances = bar.getSubstances(),
         CONSTANTS = bar.getConstants(),
@@ -234,9 +233,5 @@
 
     bar.readyBtn.addEventListener('click', function (ev) {
         bar.ready(selectedDrinks);
-    });
-
-    reset.addEventListener('click', function (ev) {
-        bar.reset();
     });
 } ());

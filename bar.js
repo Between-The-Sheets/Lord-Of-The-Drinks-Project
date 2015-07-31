@@ -3,7 +3,12 @@ var bar = (function () {
         index = Math.random() * 10 | 0,
         getRecipes,
         cocktail,
-        readyBtn = document.getElementById('ready');
+        readyBtn = document.getElementById('ready'),
+        reset = document.getElementById('reset');
+
+        reset.addEventListener('click', function (ev) {
+            bar.reset();
+        });
 
         getRecipes = function(){
             return [
